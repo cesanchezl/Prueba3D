@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Visor 3D</title>
 </head>
 <body>
@@ -13,45 +12,64 @@
     src="prueba2.gltf"
     camera-controls
     alt="avatar"
-    shadow-intensity="1">
-    </model-viewer>
-    }
-    <button onclick="moverIzquierda()">⬅️</button>
+    shadow-intensity="1"
+    
+</model-viewer>
+
+<br>
+
+<button onclick="moverIzquierda()">⬅️</button>
 <button onclick="moverDerecha()">➡️</button>
 <button onclick="zoomIn()">Zoom +</button>
 <button onclick="zoomOut()">Zoom -</button>
-    <script>
+
+<script>
 const visor = document.getElementById("visor");
 
+function obtenerOrbit() {
+  let orbit = visor.getAttribute("camera-orbit");
+  
+  if (!orbit) {
+    orbit = "0deg 75deg 2m"; // valor por defecto
+  }
+
+  return orbit.split(" ");
+}
+
 function moverIzquierda() {
-  let orbit = visor.getAttribute("camera-orbit").split(" ");
+  let orbit = obtenerOrbit();
   let theta = parseFloat(orbit[0]);
   theta -= 10;
+
   visor.setAttribute("camera-orbit", `${theta}deg ${orbit[1]} ${orbit[2]}`);
 }
 
 function moverDerecha() {
-  let orbit = visor.getAttribute("camera-orbit").split(" ");
+  let orbit = obtenerOrbit();
   let theta = parseFloat(orbit[0]);
   theta += 10;
+
   visor.setAttribute("camera-orbit", `${theta}deg ${orbit[1]} ${orbit[2]}`);
 }
 
 function zoomIn() {
-  let orbit = visor.getAttribute("camera-orbit").split(" ");
+  let orbit = obtenerOrbit();
   let radius = parseFloat(orbit[2]);
-  radius -= 0.2;
+  radius = Math.max(0.5, radius - 0.2); // límite mínimo
+
   visor.setAttribute("camera-orbit", `${orbit[0]} ${orbit[1]} ${radius}m`);
 }
 
 function zoomOut() {
-  let orbit = visor.getAttribute("camera-orbit").split(" ");
+  let orbit = obtenerOrbit();
   let radius = parseFloat(orbit[2]);
   radius += 0.2;
+
   visor.setAttribute("camera-orbit", `${orbit[0]} ${orbit[1]} ${radius}m`);
 }
 </script>
 
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js"></script>
+
 </body>
 </html>
