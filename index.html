@@ -17,6 +17,8 @@
     shadow-intensity="1">
     </model-viewer>
 
+<button onclick="moverArriba()">⬆️</button>
+<button onclick="moverAbajo()">⬇️</button>
 <button onclick="moverIzquierda()">⬅️</button>
 <button onclick="moverDerecha()">➡️</button>
 <button onclick="zoomIn()">Zoom +</button>
@@ -29,7 +31,7 @@ function obtenerOrbit() {
   let orbit = visor.getAttribute("camera-orbit");
   
   if (!orbit) {
-    orbit = "0deg 75deg 2m"; // valor por defecto
+    orbit = "0deg 75deg 2m";
   }
 
   return orbit.split(" ");
@@ -51,10 +53,32 @@ function moverDerecha() {
   visor.setAttribute("camera-orbit", `${theta}deg ${orbit[1]} ${orbit[2]}`);
 }
 
+function moverArriba() {
+  let orbit = obtenerOrbit();
+  let phi = parseFloat(orbit[1]);
+  phi -= 10;
+
+  // límite para no voltear la cámara
+  phi = Math.max(10, phi);
+
+  visor.setAttribute("camera-orbit", `${orbit[0]} ${phi}deg ${orbit[2]}`);
+}
+
+function moverAbajo() {
+  let orbit = obtenerOrbit();
+  let phi = parseFloat(orbit[1]);
+  phi += 10;
+
+  // límite para no pasar por debajo
+  phi = Math.min(170, phi);
+
+  visor.setAttribute("camera-orbit", `${orbit[0]} ${phi}deg ${orbit[2]}`);
+}
+
 function zoomIn() {
   let orbit = obtenerOrbit();
   let radius = parseFloat(orbit[2]);
-  radius = Math.max(0.5, radius - 0.2); // límite mínimo
+  radius = Math.max(0.5, radius - 0.2);
 
   visor.setAttribute("camera-orbit", `${orbit[0]} ${orbit[1]} ${radius}m`);
 }
