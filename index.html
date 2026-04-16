@@ -16,13 +16,17 @@
     alt="avatar"
     shadow-intensity="1">
     </model-viewer>
+<div class="controles">
+    <button onclick="moverArriba()">⬆️</button>
+    <button onclick="moverAbajo()">⬇️</button>
+    <button onclick="moverIzquierda()">⬅️</button>
+    <button onclick="moverDerecha()">➡️</button>
+    <button onclick="zoomIn()">Zoom +</button>
+    <button onclick="zoomOut()">Zoom -</button>
+  </div>
+</div>
 
-<button onclick="moverArriba()">⬆️</button>
-<button onclick="moverAbajo()">⬇️</button>
-<button onclick="moverIzquierda()">⬅️</button>
-<button onclick="moverDerecha()">➡️</button>
-<button onclick="zoomIn()">Zoom +</button>
-<button onclick="zoomOut()">Zoom -</button>
+
 
 <script>
 const visor = document.getElementById("visor");
