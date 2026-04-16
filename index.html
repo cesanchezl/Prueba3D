@@ -28,18 +28,14 @@
 const visor = document.getElementById("visor");
 
 function obtenerOrbit() {
-  let orbit = visor.getAttribute("camera-orbit");
-  
-  if (!orbit) {
-    orbit = "0deg 75deg 2m";
-  }
-
+  let orbit = visor.getAttribute("camera-orbit") || "0deg 75deg 2m";
   return orbit.split(" ");
 }
 
 function moverIzquierda() {
   let orbit = obtenerOrbit();
   let theta = parseFloat(orbit[0]);
+
   theta -= 10;
 
   visor.setAttribute("camera-orbit", `${theta}deg ${orbit[1]} ${orbit[2]}`);
@@ -48,6 +44,7 @@ function moverIzquierda() {
 function moverDerecha() {
   let orbit = obtenerOrbit();
   let theta = parseFloat(orbit[0]);
+
   theta += 10;
 
   visor.setAttribute("camera-orbit", `${theta}deg ${orbit[1]} ${orbit[2]}`);
@@ -56,10 +53,9 @@ function moverDerecha() {
 function moverArriba() {
   let orbit = obtenerOrbit();
   let phi = parseFloat(orbit[1]);
-  phi -= 10;
 
-  // límite para no voltear la cámara
-  phi = Math.max(10, phi);
+  phi -= 10;
+  phi = Math.max(10, phi); // límite superior
 
   visor.setAttribute("camera-orbit", `${orbit[0]} ${phi}deg ${orbit[2]}`);
 }
@@ -67,10 +63,9 @@ function moverArriba() {
 function moverAbajo() {
   let orbit = obtenerOrbit();
   let phi = parseFloat(orbit[1]);
-  phi += 10;
 
-  // límite para no pasar por debajo
-  phi = Math.min(170, phi);
+  phi += 10;
+  phi = Math.min(170, phi); // límite inferior
 
   visor.setAttribute("camera-orbit", `${orbit[0]} ${phi}deg ${orbit[2]}`);
 }
