@@ -1,8 +1,46 @@
-body{
-    background-color: black;
+body {
+  margin: 0;
+  height: 100vh;
+  background-color: black;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-model-viewer{
-    width: 100vw;
-    height: 100vh;
+.contenedor {
+  position: relative;
+}
+
+model-viewer {
+  width: 400px;
+  height: 400px;
+  background-color: black;
+}
+
+/* Botones sobre el modelo */
+.controles {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 10px;
+}
+
+/* Botones grandes */
+.controles button {
+  font-size: 24px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Efecto hover */
+.controles button:hover {
+  background-color: white;
 }
