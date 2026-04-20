@@ -31,63 +31,43 @@
 <script>
 const visor = document.getElementById("visor");
 
-function obtenerOrbit() {
-  let orbit = visor.getAttribute("camera-orbit") || "0deg 75deg 2m";
-  return orbit.split(" ");
-}
-
 function moverIzquierda() {
-  let orbit = obtenerOrbit();
-  let theta = parseFloat(orbit[0]);
-
-  theta -= 10;
-
-  visor.setAttribute("camera-orbit", `${theta}deg ${orbit[1]} ${orbit[2]}`);
+  const orbit = visor.cameraOrbit;
+  orbit.theta -= 0.2;
+  visor.cameraOrbit = orbit;
 }
 
 function moverDerecha() {
-  let orbit = obtenerOrbit();
-  let theta = parseFloat(orbit[0]);
-
-  theta += 10;
-
-  visor.setAttribute("camera-orbit", `${theta}deg ${orbit[1]} ${orbit[2]}`);
+  const orbit = visor.cameraOrbit;
+  orbit.theta += 0.2;
+  visor.cameraOrbit = orbit;
 }
 
 function moverArriba() {
-  let orbit = obtenerOrbit();
-  let phi = parseFloat(orbit[1]);
-
-  phi -= 10;
-  phi = Math.max(10, phi); // límite superior
-
-  visor.setAttribute("camera-orbit", `${orbit[0]} ${phi}deg ${orbit[2]}`);
+  const orbit = visor.cameraOrbit;
+  orbit.phi -= 0.2;
+  orbit.phi = Math.max(0.1, orbit.phi);
+  visor.cameraOrbit = orbit;
 }
 
 function moverAbajo() {
-  let orbit = obtenerOrbit();
-  let phi = parseFloat(orbit[1]);
-
-  phi += 10;
-  phi = Math.min(170, phi); // límite inferior
-
-  visor.setAttribute("camera-orbit", `${orbit[0]} ${phi}deg ${orbit[2]}`);
+  const orbit = visor.cameraOrbit;
+  orbit.phi += 0.2;
+  orbit.phi = Math.min(Math.PI - 0.1, orbit.phi);
+  visor.cameraOrbit = orbit;
 }
 
 function zoomIn() {
-  let orbit = obtenerOrbit();
-  let radius = parseFloat(orbit[2]);
-  radius = Math.max(0.5, radius - 0.2);
-
-  visor.setAttribute("camera-orbit", `${orbit[0]} ${orbit[1]} ${radius}m`);
+  const orbit = visor.cameraOrbit;
+  orbit.radius -= 0.2;
+  orbit.radius = Math.max(0.5, orbit.radius);
+  visor.cameraOrbit = orbit;
 }
 
 function zoomOut() {
-  let orbit = obtenerOrbit();
-  let radius = parseFloat(orbit[2]);
-  radius += 0.2;
-
-  visor.setAttribute("camera-orbit", `${orbit[0]} ${orbit[1]} ${radius}m`);
+  const orbit = visor.cameraOrbit;
+  orbit.radius += 0.2;
+  visor.cameraOrbit = orbit;
 }
 </script>
 
