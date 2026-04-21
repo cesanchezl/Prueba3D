@@ -2,62 +2,52 @@ body {
   margin: 0;
   height: 100vh;
   background-color: black;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  overflow: hidden; /* evita scroll raro */
 }
 
+/* NAV arriba del todo */
 nav {
-    position: absolute; /* clave */
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(51, 51, 51, 0.8); /* opcional: transparente */
-    padding: 10px;
-    z-index: 10; /* para que quede encima */
-}
-
-.controles {
-    position: absolute;
-    top: 60px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    display: flex;
-    gap: 10px;
-}
-
-model-viewer {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
-  margin-top: 25vh;
-  background-color: black;
+  background-color: rgba(51, 51, 51, 0.8);
+  padding: 10px;
+  z-index: 20;
 }
 
-/* Botones sobre el modelo */
+/* VISOR ocupa toda la pantalla */
+model-viewer {
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  background-color: black;
+  z-index: 1;
+}
+
+/* CONTROLES debajo del nav */
 .controles {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 60px; /* debajo de la barra */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
 
-  display: grid;
-  grid-template-columns: repeat(2, auto);
+  display: flex;
   gap: 10px;
 }
 
-/* Botones grandes */
+/* BOTONES */
 .controles button {
   font-size: 24px;
   padding: 10px 15px;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-
   background-color: rgba(255, 255, 255, 0.8);
 }
 
-/* Efecto hover */
+/* HOVER */
 .controles button:hover {
   background-color: white;
 }
