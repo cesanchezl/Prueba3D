@@ -8,6 +8,16 @@ body {
   align-items: center;
 }
 
+nav {
+    position: absolute; /* clave */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(51, 51, 51, 0.8); /* opcional: transparente */
+    padding: 10px;
+    z-index: 10; /* para que quede encima */
+}
+
 .contenedor {
   width: 100vw;
   height: 100vh;
