@@ -5,17 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Visor 3D</title>
+
+    <style>
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            margin-right: 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
 </head>
 <body>
+
+<!-- Barra de navegación -->
+<nav>
+    <a href="index.htm">Inicio</a>
+</nav>
 
 <model-viewer
     id="visor"
     src="prueba2.gltf"
     camera-controls
-    
     alt="avatar"
     shadow-intensity="1">
-    </model-viewer>
+</model-viewer>
+
 <div class="controles">
     <button onclick="moverArriba()">⬆️</button>
     <button onclick="moverAbajo()">⬇️</button>
@@ -23,10 +45,7 @@
     <button onclick="moverDerecha()">➡️</button>
     <button onclick="zoomIn()">Zoom +</button>
     <button onclick="zoomOut()">Zoom -</button>
-  </div>
 </div>
-
-
 
 <script>
 const visor = document.getElementById("visor");
