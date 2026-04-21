@@ -1,1 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Visor 3D</title>
 
+    <style>
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            margin-right: 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+</head>
+<body>
+
+<!-- Barra de navegación -->
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="piso2.html">Piso 2</a>
+    <a href="uci6.html">UCI</a>
+    <a href="uti18.html">UTI</a>
+
+    
+</nav>
+
+<model-viewer
+    id="visor"
+    src="camas6.glb"
+    camera-controls
+    alt="avatar"
+    shadow-intensity="1">
+</model-viewer>
+
+<div class="controles">
+    <button onclick="moverArriba()">⬆️</button>
+    <button onclick="moverAbajo()">⬇️</button>
+    <button onclick="moverIzquierda()">⬅️</button>
+    <button onclick="moverDerecha()">➡️</button>
+    <button onclick="zoomIn()">Zoom +</button>
+    <button onclick="zoomOut()">Zoom -</button>
+</div>
+
+<script>
+const visor = document.getElementById("visor");
+
+// valores iniciales
+let theta = 0;
+let phi = 75;
+let radius = 2.5;
+
+function actualizarCamara() {
+  visor.cameraOrbit = `${theta}deg ${phi}deg ${radius}m`;
+}
+
+function moverIzquierda() {
+  theta -= 10;
+  actualizarCamara();
+}
+
+function moverDerecha() {
+  theta += 10;
+  actualizarCamara();
+}
+
+function moverArriba() {
+  phi = Math.max(10, phi - 10);
+  actualizarCamara();
+}
+
+function moverAbajo() {
+  phi = Math.min(170, phi + 10);
+  actualizarCamara();
+}
+
+function zoomIn() {
+  radius = Math.max(0.5, radius - 0.3);
+  actualizarCamara();
+}
+
+function zoomOut() {
+  radius += 0.3;
+  actualizarCamara();
+}
+</script>
+
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js"></script>
+</body>
+</html>
