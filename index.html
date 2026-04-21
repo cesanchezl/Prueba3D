@@ -50,43 +50,43 @@
 <script>
 const visor = document.getElementById("visor");
 
+// valores iniciales
+let theta = 0;
+let phi = 75;
+let radius = 2.5;
+
+function actualizarCamara() {
+  visor.cameraOrbit = `${theta}deg ${phi}deg ${radius}m`;
+}
+
 function moverIzquierda() {
-  const orbit = visor.cameraOrbit;
-  orbit.theta -= 0.2;
-  visor.cameraOrbit = orbit;
+  theta -= 10;
+  actualizarCamara();
 }
 
 function moverDerecha() {
-  const orbit = visor.cameraOrbit;
-  orbit.theta += 0.2;
-  visor.cameraOrbit = orbit;
+  theta += 10;
+  actualizarCamara();
 }
 
 function moverArriba() {
-  const orbit = visor.cameraOrbit;
-  orbit.phi -= 0.2;
-  orbit.phi = Math.max(0.1, orbit.phi);
-  visor.cameraOrbit = orbit;
+  phi = Math.max(10, phi - 10);
+  actualizarCamara();
 }
 
 function moverAbajo() {
-  const orbit = visor.cameraOrbit;
-  orbit.phi += 0.2;
-  orbit.phi = Math.min(Math.PI - 0.1, orbit.phi);
-  visor.cameraOrbit = orbit;
+  phi = Math.min(170, phi + 10);
+  actualizarCamara();
 }
 
 function zoomIn() {
-  const orbit = visor.cameraOrbit;
-  orbit.radius -= 0.2;
-  orbit.radius = Math.max(0.5, orbit.radius);
-  visor.cameraOrbit = orbit;
+  radius = Math.max(0.5, radius - 0.3);
+  actualizarCamara();
 }
 
 function zoomOut() {
-  const orbit = visor.cameraOrbit;
-  orbit.radius += 0.2;
-  visor.cameraOrbit = orbit;
+  radius += 0.3;
+  actualizarCamara();
 }
 </script>
 
