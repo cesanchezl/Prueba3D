@@ -1,3 +1,4 @@
+/* BASE */
 body {
   margin: 0;
   height: 100vh;
@@ -5,23 +6,9 @@ body {
   overflow: hidden;
 }
 
-/* NAV */
-nav {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: rgba(51, 51, 51, 0.8);
-  padding: 10px;
-  z-index: 100; /* 🔥 más alto que controles */
-}
-
-nav, .controles {
-  z-index: 50;
-  position: absolute;
-}
-
-/* VISOR (debajo de todo visualmente y en interacción) */
+/* =========================
+   1. MODEL VIEWER (fondo)
+   ========================= */
 model-viewer {
   width: 100vw;
   height: 100vh;
@@ -29,26 +16,45 @@ model-viewer {
   top: 0;
   left: 0;
   z-index: 1;
+  background-color: black;
 }
 
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-
-  pointer-events: none; /* 🔥 clave: deja pasar los clics */
-}
-
-/* CONTROLES */
+/* =========================
+   2. CONTROLES (botones)
+   ========================= */
 .controles {
   position: absolute;
-  top: 60px;
+  top: 60px; /* debajo del nav */
   left: 50%;
   transform: translateX(-50%);
-  z-index: 50; /* menor que nav */
+  z-index: 50;
 
   display: flex;
   gap: 10px;
 }
 
-/* BOTONES */
+.controles button {
+  font-size: 24px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.controles button:hover {
+  background-color: white;
+}
+
+/* =========================
+   3. NAVBAR (arriba de todo)
+   ========================= */
+nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(51, 51, 51, 0.8);
+  padding: 10px;
+  z-index: 100;
+}
