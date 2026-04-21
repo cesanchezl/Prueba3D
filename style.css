@@ -16,6 +16,11 @@ nav {
   z-index: 30;
 }
 
+nav, .controles {
+  z-index: 50;
+  position: absolute;
+}
+
 /* VISOR (debajo de todo visualmente y en interacción) */
 model-viewer {
   width: 100vw;
