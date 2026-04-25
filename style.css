@@ -23,14 +23,13 @@ model-viewer {
    2. CONTROLES (botones)
    ========================= */
 .controles {
-  position: absolute;
-  top: 60px; /* debajo del nav */
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 50;
-
-  display: flex;
-  gap: 10px;
+ position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  background: white; /* opcional */
+  padding: 10px 0;
 }
 
 .controles button {
