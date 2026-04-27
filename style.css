@@ -75,3 +75,15 @@ nav {
   padding: 10px;
   z-index: 300; /* más alto que todo */
 }
+.caja-texto {
+  position: fixed;
+  left: 20px;              /* separación desde el borde izquierdo */
+  top: 50%;                /* baja al centro */
+  transform: translateY(-50%); /* centra perfectamente */
+  
+  background-color: #f4f4f4;
+  padding: 20px;
+  width: 250px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
