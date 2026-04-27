@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Visor 3D</title>
+
+   <style>
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+        .navbar a {
+      float: left;
+      color: white;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    .navbar a:hover {
+      background-color: #575757;
+    }
+
+    /* Dropdown */
+    .dropdown {
+      float: left;
+      overflow: hidden;
+    }
+
+    .dropdown .dropbtn {
+      cursor: pointer;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      float: none;
+      color: black;
+      padding: 12px 16px;
+      display: block;
+      text-align: left;
+      text-decoration: none;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+    /* Mostrar dropdown al hacer hover */
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    </style>
+
+</head>
+<body>
+
+<!-- Barra de navegación -->
+<nav class="navbar">
+    <a href="index.html">Inicio</a>
+    <a href="piso1.html">Piso 1</a>
+    <div class="dropdown">
+        <a class="dropbtn">Piso 2 ▼</a>
+        <div class="dropdown-content">
+            <a href="piso2.html">Piso 2</a>
+            <a href="uci6.html">UCI</a>
+            <a href="uti18.html">UTI</a>
+        </div>
+    </div>
+
+    <a href="obstetricia.html">Obstetricia</a>
+</nav>
+
+<model-viewer
+    id="visor"
+    src="camas18.glb"
+    camera-controls
+    alt="avatar"
+    shadow-intensity="1">
+</model-viewer>
+
+<div class="controles">
+    <button onclick="moverArriba()">⬆️</button>
+    <button onclick="moverAbajo()">⬇️</button>
+    <button onclick="moverIzquierda()">⬅️</button>
+    <button onclick="moverDerecha()">➡️</button>
+    <button onclick="zoomIn()">Zoom +</button>
+    <button onclick="zoomOut()">Zoom -</button>
+</div>
+
+<script>
+const visor = document.getElementById("visor");
+
+// valores iniciales
+let theta = 0;
+let phi = 75;
+let radius = 2.5;
+
+function actualizarCamara() {
+  visor.cameraOrbit = `${theta}deg ${phi}deg ${radius}m`;
+}
+
+function moverIzquierda() {
+  theta -= 10;
+  actualizarCamara();
+}
+
+function moverDerecha() {
+  theta += 10;
+  actualizarCamara();
+}
+
+function moverArriba() {
+  phi = Math.max(10, phi - 10);
+  actualizarCamara();
+}
+
+function moverAbajo() {
+  phi = Math.min(170, phi + 10);
+  actualizarCamara();
+}
+
+function zoomIn() {
+  radius = Math.max(0.5, radius - 0.3);
+  actualizarCamara();
+}
+
+function zoomOut() {
+  radius += 0.3;
+  actualizarCamara();
+}
+</script>
+
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js"></script>
+</body>
+</html>
