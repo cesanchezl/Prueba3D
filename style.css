@@ -77,13 +77,15 @@ nav {
 }
 .caja-texto {
   position: fixed;
-  left: 20px;              /* separación desde el borde izquierdo */
-  top: 50%;                /* baja al centro */
-  transform: translateY(-50%); /* centra perfectamente */
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
   
   background-color: #f4f4f4;
   padding: 20px;
   width: 250px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+
+  z-index: 1000; /* 🔥 esto la pone encima */
 }
