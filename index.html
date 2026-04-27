@@ -11,15 +11,53 @@
             background-color: #333;
             padding: 10px;
         }
-        nav a {
-            color: white;
-            margin-right: 15px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
+        .navbar a {
+      float: left;
+      color: white;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    .navbar a:hover {
+      background-color: #575757;
+    }
+
+    /* Dropdown */
+    .dropdown {
+      float: left;
+      overflow: hidden;
+    }
+
+    .dropdown .dropbtn {
+      cursor: pointer;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      float: none;
+      color: black;
+      padding: 12px 16px;
+      display: block;
+      text-align: left;
+      text-decoration: none;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+    /* Mostrar dropdown al hacer hover */
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
     </style>
 
 </head>
@@ -28,13 +66,15 @@
 <!-- Barra de navegación -->
 <nav>
     <a href="index.html">Inicio</a>
-<div class="dropdown">
-        <a href="piso2.html">Piso 2 ▾</a>
-        <div class="dropdown-content">
-            <a href="uci6.html">UCI</a>
-            <a href="uti18.html">UTI</a>
-        </div>
+ <div class="dropdown">
+    <a class="dropbtn">Piso 2 ▼</a>
+    <div class="dropdown-content">
+      <a href="piso2.html">Piso 2</a>
+      <a href="uci6.html">UCI</a>
+      <a href="uti18.html">UTI</a>
     </div>
+  </div>
+    
 
     <a href="obstetricia.html">Obstetricia</a>
 
