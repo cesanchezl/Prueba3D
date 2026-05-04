@@ -58,6 +58,104 @@
     .dropdown:hover .dropdown-content {
       display: block;
     }
+
+       body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    background: #eef2f7;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    background: #ffffff;
+    padding: 25px;
+    box-shadow: 4px 0 15px rgba(0,0,0,0.05);
+}
+
+.sidebar h2 {
+    margin-bottom: 20px;
+}
+
+/* BOTONES */
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.button-group button {
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background: #f1f3f7;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.button-group button:hover {
+    background: #dfe6f1;
+}
+
+.button-group button.active {
+    background: #2c2c54;
+    color: white;
+}
+
+select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    background: #f9fafc;
+}
+
+/* Centro */
+.center {
+    flex: 1;
+}
+
+/* Panel derecho */
+.right-panel {
+    width: 300px;
+    height: 100vh;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.card {
+    width: 100%;
+    background: linear-gradient(135deg, #1e1e2f, #2c2c54);
+    color: white;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.item {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.05);
+}
+
+.label {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.value {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.green { color: #2ecc71; }
+.yellow { color: #f1c40f; }
+.red { color: #e74c3c; }
     </style>
 
 </head>
@@ -78,6 +176,120 @@
 
     <a href="obstetricia.html">Obstetricia</a>
 </nav>
+    <div class="sidebar">
+    <h2>Indicadores</h2>
+
+    <!-- INDICADOR (BOTONES) -->
+    <div class="button-group" id="grupoIndicador">
+        <button onclick="actualizarBoton(this, 'val1', 'Promedio Dias de Estadia', '1')">Promedio Dias de Estadia</button>
+        <button onclick="actualizarBoton(this, 'val1', 'Indice de Rotacion', '2')">Indice de Rotacion</button>
+        <button onclick="actualizarBoton(this, 'val1', 'Promedio Camas Disponibles', '3')">Promedio Camas Disponibles</button>
+        <button onclick="actualizarBoton(this, 'val1', 'Intervalo de Sustitucion', '4')">Intervalo de Sustitucion</button>
+        <button onclick="actualizarBoton(this, 'val1', 'Indice de Ocupacion', '5')">Indice de Ocupacion</button>
+        <button onclick="actualizarBoton(this, 'val1', 'Lealtad', '6')">Lealtad</button>
+    </div>
+
+    <h2>Año</h2>
+    <!-- AÑO (BOTONES) -->
+    <div class="button-group" id="grupoAnio">
+        <button onclick="actualizarBoton(this, 'val2', '2023', '1')">2023</button>
+        <button onclick="actualizarBoton(this, 'val2', '2024', '2')">2024</button>
+        <button onclick="actualizarBoton(this, 'val2', '2025', '3')">2025</button>
+    </div>
+
+    <!-- MES (SE MANTIENE) -->
+    <select onchange="actualizar()">
+        <option selected disabled>Mes</option>
+        <option value="1">Todos los Meses</option>
+        <option value="2">Enero</option>
+        <option value="3">Febrero</option>
+        <option value="4">Marzo</option>
+        <option value="5">Abril</option>
+        <option value="6">Mayo</option>
+        <option value="7">Junio</option>
+        <option value="8">Julio</option>
+        <option value="9">Agosto</option>
+        <option value="10">Septiembre</option>
+        <option value="11">Octubre</option>
+        <option value="12">Noviembre</option>
+        <option value="13">Diciembre</option>
+    </select>
+</div>
+
+<div class="center"></div>
+
+<div class="right-panel">
+    <div class="card">
+
+        <div class="item">
+            <div class="label">Indicador</div>
+            <div id="val1" class="value">—</div>
+        </div>
+
+        <div class="item">
+            <div class="label">Año</div>
+            <div id="val2" class="value">—</div>
+        </div>
+
+        <div class="item">
+            <div class="label">Mes</div>
+            <div id="val3" class="value">—</div>
+        </div>
+
+        <h1>2,70</h1>
+    </div>
+</div>
+
+<script>
+// BOTONES
+function actualizarBoton(btn, id, texto, valor) {
+    const grupo = btn.parentElement;
+    const botones = grupo.querySelectorAll("button");
+
+    botones.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    const elemento = document.getElementById(id);
+    elemento.innerText = texto;
+
+    elemento.classList.remove("green", "yellow", "red");
+
+    if (valor == "1") {
+        elemento.classList.add("green");
+    } else if (valor == "2") {
+        elemento.classList.add("green");
+    } else if (valor == "3") {
+        elemento.classList.add("green");
+    } else if (valor == "4") {
+        elemento.classList.add("green");
+    } else if (valor == "5") {
+        elemento.classList.add("green");
+    } else if (valor == "6") {
+        elemento.classList.add("green");
+    }
+
+    
+}
+
+// SELECT (MES)
+function actualizar() {
+    const select = document.querySelector("select");
+    const valor = select.options[select.selectedIndex].text;
+    const elemento = document.getElementById("val3");
+
+    elemento.innerText = valor;
+
+    elemento.classList.remove("green", "yellow", "red");
+
+    if (select.value == "1") {
+        elemento.classList.add("green");
+    } else if (select.value == "2") {
+        elemento.classList.add("green");
+    } else if (select.value == "3") {
+        elemento.classList.add("green");
+    }
+}
+</script>
 
 <model-viewer
     id="visor"
