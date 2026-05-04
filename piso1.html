@@ -1,65 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Visor 3D</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visor 3D</title>
 
-   <style>
-        nav {
-            background-color: #333;
-            padding: 10px;
-        }
-        .navbar a {
-      float: left;
-      color: white;
-      padding: 14px 16px;
-      text-decoration: none;
-    }
+<style>
+nav {
+    background-color: #333;
+    padding: 10px;
+}
+.navbar a {
+    float: left;
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.navbar a:hover {
+    background-color: #575757;
+}
 
-    .navbar a:hover {
-      background-color: #575757;
-    }
+/* Dropdown */
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+.dropdown .dropbtn {
+    cursor: pointer;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+}
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    display: block;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
 
-    /* Dropdown */
-    .dropdown {
-      float: left;
-      overflow: hidden;
-    }
-
-    .dropdown .dropbtn {
-      cursor: pointer;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #f9f9f9;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-      z-index: 1;
-    }
-
-    .dropdown-content a {
-      float: none;
-      color: black;
-      padding: 12px 16px;
-      display: block;
-      text-align: left;
-      text-decoration: none;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #ddd;
-    }
-
-    /* Mostrar dropdown al hacer hover */
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-
-       body {
+/* Layout */
+body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
     display: flex;
@@ -75,11 +61,6 @@
     box-shadow: 4px 0 15px rgba(0,0,0,0.05);
 }
 
-.sidebar h2 {
-    margin-bottom: 20px;
-}
-
-/* BOTONES */
 .button-group {
     display: flex;
     flex-direction: column;
@@ -93,11 +74,6 @@
     border-radius: 10px;
     background: #f1f3f7;
     cursor: pointer;
-    transition: 0.2s;
-}
-
-.button-group button:hover {
-    background: #dfe6f1;
 }
 
 .button-group button.active {
@@ -105,18 +81,38 @@
     color: white;
 }
 
-select {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border-radius: 12px;
-    border: 1px solid #ddd;
-    background: #f9fafc;
-}
-
-/* Centro */
+/* CENTRO (ARREGLADO) */
 .center {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+model-viewer {
+    width: 80%;
+    height: 500px;
+}
+
+/* CONTROLES */
+.controles {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.controles button {
+    padding: 10px 12px;
+    border: none;
+    border-radius: 8px;
+    background: #2c2c54;
+    color: white;
+    cursor: pointer;
+}
+
+.controles button:hover {
+    background: #40407a;
 }
 
 /* Panel derecho */
@@ -138,30 +134,21 @@ select {
 
 .item {
     margin-bottom: 15px;
-    padding: 10px;
-    border-radius: 10px;
-    background: rgba(255,255,255,0.05);
 }
 
 .label {
     font-size: 14px;
-    opacity: 0.8;
 }
 
 .value {
     font-size: 18px;
     font-weight: bold;
 }
-
-.green { color: #2ecc71; }
-.yellow { color: #f1c40f; }
-.red { color: #e74c3c; }
-    </style>
-
+</style>
 </head>
+
 <body>
 
-<!-- Barra de navegación -->
 <nav class="navbar">
     <a href="index.html">Inicio</a>
     <a href="piso1.html">Piso 1</a>
@@ -173,188 +160,89 @@ select {
             <a href="uti18.html">UTI</a>
         </div>
     </div>
-
     <a href="obstetricia.html">Obstetricia</a>
 </nav>
-    <div class="sidebar">
+
+<!-- Sidebar -->
+<div class="sidebar">
     <h2>Indicadores</h2>
 
-    <!-- INDICADOR (BOTONES) -->
-    <div class="button-group" id="grupoIndicador">
-        <button onclick="actualizarBoton(this, 'val1', 'Promedio Dias de Estadia', '1')">Promedio Dias de Estadia</button>
-        <button onclick="actualizarBoton(this, 'val1', 'Indice de Rotacion', '2')">Indice de Rotacion</button>
-        <button onclick="actualizarBoton(this, 'val1', 'Promedio Camas Disponibles', '3')">Promedio Camas Disponibles</button>
-        <button onclick="actualizarBoton(this, 'val1', 'Intervalo de Sustitucion', '4')">Intervalo de Sustitucion</button>
-        <button onclick="actualizarBoton(this, 'val1', 'Indice de Ocupacion', '5')">Indice de Ocupacion</button>
-        <button onclick="actualizarBoton(this, 'val1', 'Lealtad', '6')">Lealtad</button>
+    <div class="button-group">
+        <button onclick="actualizarBoton(this,'val1','Promedio Dias de Estadia')">Promedio Dias</button>
+        <button onclick="actualizarBoton(this,'val1','Indice de Rotacion')">Rotación</button>
     </div>
 
     <h2>Año</h2>
-    <!-- AÑO (BOTONES) -->
-    <div class="button-group" id="grupoAnio">
-        <button onclick="actualizarBoton(this, 'val2', '2023', '1')">2023</button>
-        <button onclick="actualizarBoton(this, 'val2', '2024', '2')">2024</button>
-        <button onclick="actualizarBoton(this, 'val2', '2025', '3')">2025</button>
+    <div class="button-group">
+        <button onclick="actualizarBoton(this,'val2','2023')">2023</button>
+        <button onclick="actualizarBoton(this,'val2','2024')">2024</button>
     </div>
-
-    <!-- MES (SE MANTIENE) -->
-    <select onchange="actualizar()">
-        <option selected disabled>Mes</option>
-        <option value="1">Todos los Meses</option>
-        <option value="2">Enero</option>
-        <option value="3">Febrero</option>
-        <option value="4">Marzo</option>
-        <option value="5">Abril</option>
-        <option value="6">Mayo</option>
-        <option value="7">Junio</option>
-        <option value="8">Julio</option>
-        <option value="9">Agosto</option>
-        <option value="10">Septiembre</option>
-        <option value="11">Octubre</option>
-        <option value="12">Noviembre</option>
-        <option value="13">Diciembre</option>
-    </select>
 </div>
 
-<div class="center"></div>
+<!-- CENTRO -->
+<div class="center">
 
+    <model-viewer
+        id="visor"
+        src="piso1.glb"
+        camera-controls
+        alt="modelo 3D"
+        shadow-intensity="1">
+    </model-viewer>
+
+    <div class="controles">
+        <button onclick="moverArriba()">⬆️</button>
+        <button onclick="moverAbajo()">⬇️</button>
+        <button onclick="moverIzquierda()">⬅️</button>
+        <button onclick="moverDerecha()">➡️</button>
+        <button onclick="zoomIn()">Zoom +</button>
+        <button onclick="zoomOut()">Zoom -</button>
+    </div>
+
+</div>
+
+<!-- Panel derecho -->
 <div class="right-panel">
     <div class="card">
-
         <div class="item">
             <div class="label">Indicador</div>
             <div id="val1" class="value">—</div>
         </div>
-
         <div class="item">
             <div class="label">Año</div>
             <div id="val2" class="value">—</div>
         </div>
-
-        <div class="item">
-            <div class="label">Mes</div>
-            <div id="val3" class="value">—</div>
-        </div>
-
-        <h1>2,70</h1>
     </div>
 </div>
 
 <script>
-// BOTONES
-function actualizarBoton(btn, id, texto, valor) {
+function actualizarBoton(btn, id, texto) {
     const grupo = btn.parentElement;
-    const botones = grupo.querySelectorAll("button");
-
-    botones.forEach(b => b.classList.remove("active"));
+    grupo.querySelectorAll("button").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
-
-    const elemento = document.getElementById(id);
-    elemento.innerText = texto;
-
-    elemento.classList.remove("green", "yellow", "red");
-
-    if (valor == "1") {
-        elemento.classList.add("green");
-    } else if (valor == "2") {
-        elemento.classList.add("green");
-    } else if (valor == "3") {
-        elemento.classList.add("green");
-    } else if (valor == "4") {
-        elemento.classList.add("green");
-    } else if (valor == "5") {
-        elemento.classList.add("green");
-    } else if (valor == "6") {
-        elemento.classList.add("green");
-    }
-
-    
+    document.getElementById(id).innerText = texto;
 }
 
-// SELECT (MES)
-function actualizar() {
-    const select = document.querySelector("select");
-    const valor = select.options[select.selectedIndex].text;
-    const elemento = document.getElementById("val3");
-
-    elemento.innerText = valor;
-
-    elemento.classList.remove("green", "yellow", "red");
-
-    if (select.value == "1") {
-        elemento.classList.add("green");
-    } else if (select.value == "2") {
-        elemento.classList.add("green");
-    } else if (select.value == "3") {
-        elemento.classList.add("green");
-    }
-}
-</script>
-
-<model-viewer
-    id="visor"
-    src="piso1.glb"
-    camera-controls
-    alt="avatar"
-    shadow-intensity="1">
-</model-viewer>
-
-    <div class="caja-texto">
-  <p>Piso 1</p>
-</div>
-
-<div class="controles">
-    <button onclick="moverArriba()">⬆️</button>
-    <button onclick="moverAbajo()">⬇️</button>
-    <button onclick="moverIzquierda()">⬅️</button>
-    <button onclick="moverDerecha()">➡️</button>
-    <button onclick="zoomIn()">Zoom +</button>
-    <button onclick="zoomOut()">Zoom -</button>
-</div>
-
-<script>
+/* CONTROL DE CÁMARA */
 const visor = document.getElementById("visor");
 
-// valores iniciales
 let theta = 0;
 let phi = 75;
 let radius = 2.5;
 
 function actualizarCamara() {
-  visor.cameraOrbit = `${theta}deg ${phi}deg ${radius}m`;
+    visor.cameraOrbit = `${theta}deg ${phi}deg ${radius}m`;
 }
 
-function moverIzquierda() {
-  theta -= 10;
-  actualizarCamara();
-}
-
-function moverDerecha() {
-  theta += 10;
-  actualizarCamara();
-}
-
-function moverArriba() {
-  phi = Math.max(10, phi - 10);
-  actualizarCamara();
-}
-
-function moverAbajo() {
-  phi = Math.min(170, phi + 10);
-  actualizarCamara();
-}
-
-function zoomIn() {
-  radius = Math.max(0.5, radius - 0.3);
-  actualizarCamara();
-}
-
-function zoomOut() {
-  radius += 0.3;
-  actualizarCamara();
-}
+function moverIzquierda(){ theta -= 10; actualizarCamara(); }
+function moverDerecha(){ theta += 10; actualizarCamara(); }
+function moverArriba(){ phi -= 10; actualizarCamara(); }
+function moverAbajo(){ phi += 10; actualizarCamara(); }
+function zoomIn(){ radius -= 0.3; actualizarCamara(); }
+function zoomOut(){ radius += 0.3; actualizarCamara(); }
 </script>
 
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js"></script>
+
 </body>
 </html>
