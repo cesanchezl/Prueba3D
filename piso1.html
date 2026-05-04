@@ -3,106 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
 <title>Visor 3D</title>
-
-<style>
-/* NAVBAR ARRIBA */
-.navbar {
-    background-color: #333;
-    display: flex;
-}
-
-.navbar a {
-    color: white;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-.navbar a:hover {
-    background-color: #575757;
-}
-
-/* Dropdown */
-.dropdown {
-    position: relative;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background: white;
-    min-width: 160px;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-/* LAYOUT GENERAL */
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: #eef2f7;
-}
-
-/* CONTENEDOR DE 3 COLUMNAS */
-.main {
-    display: flex;
-}
-
-/* Sidebar */
-.sidebar {
-    width: 260px;
-    height: calc(100vh - 50px);
-    background: white;
-    padding: 20px;
-}
-
-/* CENTRO */
-.center {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: blue;
-}
-
-/* VISOR */
-model-viewer {
-    width: 80%;
-    height: 500px;
-}
-
-/* CONTROLES */
-.controles {
-    margin-top: 15px;
-    display: flex;
-    gap: 10px;
-}
-
-.controles button {
-    padding: 10px;
-    background: #2c2c54;
-    color: white;
-    border: none;
-    border-radius: 8px;
-}
-
-/* PANEL DERECHO */
-.right-panel {
-    width: 300px;
-    padding: 20px;
-}
-
-.card {
-    background: #2c2c54;
-    color: white;
-    padding: 20px;
-    border-radius: 20px;
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -124,22 +26,15 @@ model-viewer {
     <a href="obstetricia.html">Obstetricia</a>
 </div>
 
-<!-- CONTENIDO EN 3 COLUMNAS -->
+<!-- CONTENIDO -->
 <div class="main">
 
-    <!-- IZQUIERDA -->
     <div class="sidebar">
         <h2>Indicadores</h2>
     </div>
 
-    <!-- CENTRO -->
     <div class="center">
-
-        <model-viewer
-            id="visor"
-            src="piso1.glb"
-            camera-controls>
-        </model-viewer>
+        <model-viewer id="visor" src="piso1.glb" camera-controls></model-viewer>
 
         <div class="controles">
             <button onclick="moverArriba()">⬆️</button>
@@ -149,14 +44,10 @@ model-viewer {
             <button onclick="zoomIn()">+</button>
             <button onclick="zoomOut()">-</button>
         </div>
-
     </div>
 
-    <!-- DERECHA -->
     <div class="right-panel">
-        <div class="card">
-            Panel derecho
-        </div>
+        <div class="card">Panel derecho</div>
     </div>
 
 </div>
