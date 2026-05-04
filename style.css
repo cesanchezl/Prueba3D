@@ -89,3 +89,95 @@ nav {
 
   z-index: 1000; /* 🔥 esto la pone encima */
 }
+
+/* BASE */
+body {
+  margin: 0;
+  height: 100vh;
+  background-color: blue;
+  overflow: hidden;
+}
+
+/* =========================
+   NavBar
+   ========================= */
+nav {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+}
+
+nav a {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+}
+
+
+/* =========================
+   1. MODEL VIEWER (fondo)
+   ========================= */
+model-viewer {
+  width: 100vw;
+  height: 100vh;
+  position: fixed; /* cambiado de absolute a fixed */
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: blue;
+}
+
+/* =========================
+   2. CONTROLES (botones abajo)
+   ========================= */
+.controles {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex; /* mejor alineación */
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.6); /* fondo semi-transparente */
+  z-index: 200; /* por encima del visor */
+}
+
+.controles button {
+  font-size: 20px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.controles button:hover {
+  background-color: white;
+}
+
+/* =========================
+   3. NAVBAR (arriba)
+   ========================= */
+nav {
+  position: fixed; /* cambiado a fixed */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(51, 51, 51, 0.8);
+  padding: 10px;
+  z-index: 300; /* más alto que todo */
+}
+.caja-texto {
+  position: fixed;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  
+  background-color: #f4f4f4;
+  padding: 20px;
+  width: 250px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+
+  z-index: 1000; /* 🔥 esto la pone encima */
+}
