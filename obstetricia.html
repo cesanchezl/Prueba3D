@@ -231,7 +231,6 @@ model-viewer {
 </div>
 
 </div>
-
 <script>
 const visor = document.getElementById("visor");
 
@@ -243,8 +242,8 @@ let indicador = "";
 let anio = "";
 let mes = "";
 
-// 🔴 CAMBIA ESTO CUANDO TENGAS API REAL
-const API_URL = "http://localhost:3000/obstetricia";
+// 🔥 API REAL
+const API_URL = "https://api-hsjmelipilla.onrender.com/api/valores/";
 
 // ================= CAMERA =================
 function actualizarCamara() {
@@ -281,42 +280,32 @@ function actualizarMes() {
     obtenerDatos();
 }
 
-// ================= API / MOCK =================
+// ================= API =================
 async function obtenerDatos() {
 
     if(!indicador || !anio || !mes) return;
 
     document.getElementById("valorFinal").innerText = "Cargando...";
 
-    // 🟢 SI NO HAY API → usa simulación
-    if(!API_URL){
-        setTimeout(() => {
-            const valor = (Math.random() * 10).toFixed(2);
-            document.getElementById("valorFinal").innerText = valor;
-        }, 400);
-        return;
-    }
-
-    // 🔵 SI HAY API REAL
     try {
-        const response = await fetch(
-            `${API_URL}?indicador=${encodeURIComponent(indicador)}&anio=${anio}&mes=${mes}`
-        );
+        const url = `${API_URL}?servicio=obstetricia&indicador=${encodeURIComponent(indicador)}&anio=${anio}&mes=${mes}`;
 
-        if(!response.ok) throw new Error("API error");
+        const response = await fetch(url);
+
+        if(!response.ok) throw new Error("Error en API");
 
         const data = await response.json();
 
-        document.getElementById("valorFinal").innerText = data.valor ?? "Sin datos";
+        // 👇 ajusta según tu API (esto es lo más común)
+        document.getElementById("valorFinal").innerText =
+            data.valor ?? data.data?.valor ?? "Sin datos";
 
     } catch (error) {
         console.error(error);
-        document.getElementById("valorFinal").innerText = "Error";
+        document.getElementById("valorFinal").innerText = "Error API";
     }
 }
 </script>
-
-<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js"></script>
 
 </body>
 </html>
