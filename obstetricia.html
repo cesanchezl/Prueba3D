@@ -267,6 +267,11 @@ let theta = 0;
 let phi = 75;
 let radius = 2.5;
 
+let indicador = "";
+let anio = "";
+let mes = "";
+
+// ================= CAMERA =================
 function actualizarCamara() {
     visor.cameraOrbit = `${theta}deg ${phi}deg ${radius}m`;
 }
@@ -278,21 +283,52 @@ function moverAbajo(){ phi += 10; actualizarCamara(); }
 function zoomIn(){ radius -= 0.3; actualizarCamara(); }
 function zoomOut(){ radius += 0.3; actualizarCamara(); }
 
+// ================= BOTONES =================
 function actualizarBoton(btn, id, texto) {
     btn.parentElement.querySelectorAll("button").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
+
     document.getElementById(id).innerText = texto;
 
-    document.getElementById("valorFinal").innerText =
-        (Math.random() * 5).toFixed(2);
+    if(id === "val1") indicador = texto;
+    if(id === "val2") anio = texto;
+
+    obtenerDatos();
 }
 
+// ================= MES =================
 function actualizarMes() {
     const select = document.querySelector("select");
-    document.getElementById("val3").innerText = select.value;
+    mes = select.value;
+
+    document.getElementById("val3").innerText = mes;
+
+    obtenerDatos();
+}
+
+// ================= API =================
+async function obtenerDatos() {
+
+    // Validar que todos los campos estén seleccionados
+    if(!indicador || !anio || !mes) return;
+
+    try {
+        const response = await fetch(
+            `https://tu-api.com/obstetricia?indicador=${encodeURIComponent(indicador)}&anio=${anio}&mes=${mes}`
+        );
+
+        if(!response.ok) throw new Error("Error en la API");
+
+        const data = await response.json();
+
+        document.getElementById("valorFinal").innerText = data.valor;
+
+    } catch (error) {
+        console.error(error);
+        document.getElementById("valorFinal").innerText = "Error";
+    }
 }
 </script>
-
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js"></script>
 
 </body>
