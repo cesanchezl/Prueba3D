@@ -242,7 +242,6 @@ let indicador = "";
 let anio = "";
 let mes = "";
 
-// 🔥 API REAL
 const API_URL = "https://api-hsjmelipilla.onrender.com/api/valores/";
 
 // ================= CAMERA =================
@@ -288,20 +287,30 @@ async function obtenerDatos() {
     document.getElementById("valorFinal").innerText = "Cargando...";
 
     try {
-        const url = `${API_URL}?servicio=obstetricia&indicador=${encodeURIComponent(indicador)}&anio=${anio}&mes=${mes}`;
+        const url = `${API_URL}?servicio=obstetricia&indicador=${encodeURIComponent(indicador)}&anio=${anio}&mes=${encodeURIComponent(mes)}`;
 
         const response = await fetch(url);
 
-        if(!response.ok) throw new Error("Error en API");
+        if(!response.ok) {
+            throw new Error("HTTP " + response.status);
+        }
 
         const data = await response.json();
 
-        // 👇 ajusta según tu API (esto es lo más común)
+        console.log("RESPUESTA API:", data);
+
+        // 🔥 soporte para múltiples formatos de API
+        let valor =
+            data.valor ??
+            data?.data?.valor ??
+            (Array.isArray(data) ? data[0]?.valor : null) ??
+            null;
+
         document.getElementById("valorFinal").innerText =
-            data.valor ?? data.data?.valor ?? "Sin datos";
+            valor ?? "Sin datos";
 
     } catch (error) {
-        console.error(error);
+        console.error("ERROR API:", error);
         document.getElementById("valorFinal").innerText = "Error API";
     }
 }
