@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Visor 3D</title>
+<title>Visor 3D - Obstetricia</title>
 
 <style>
-/* RESET */
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
     margin: 0;
@@ -17,7 +14,6 @@ body {
     background: #eef2f7;
 }
 
-/* NAVBAR */
 .navbar {
     display: flex;
     background-color: #333;
@@ -33,10 +29,7 @@ body {
     background-color: #575757;
 }
 
-/* DROPDOWN */
-.dropdown {
-    position: relative;
-}
+.dropdown { position: relative; }
 
 .dropdown-content {
     display: none;
@@ -49,13 +42,11 @@ body {
     display: block;
 }
 
-/* LAYOUT PRINCIPAL */
 .main {
     display: flex;
     height: calc(100vh - 48px);
 }
 
-/* SIDEBAR IZQUIERDA */
 .sidebar {
     width: 260px;
     background: white;
@@ -83,7 +74,6 @@ body {
     color: white;
 }
 
-/* CENTRO */
 .center {
     flex: 1;
     display: flex;
@@ -98,7 +88,6 @@ model-viewer {
     height: 500px;
 }
 
-/* CONTROLES */
 .controles {
     margin-top: 15px;
     display: flex;
@@ -118,7 +107,6 @@ model-viewer {
     background: #40407a;
 }
 
-/* PANEL DERECHO */
 .right-panel {
     width: 300px;
     background: white;
@@ -132,9 +120,7 @@ model-viewer {
     border-radius: 20px;
 }
 
-.item {
-    margin-bottom: 15px;
-}
+.item { margin-bottom: 15px; }
 
 .label {
     font-size: 14px;
@@ -150,113 +136,99 @@ model-viewer {
 
 <body>
 
-<!-- NAVBAR -->
 <div class="navbar">
-    <a href="index.html">Inicio</a>
-    <a href="piso1.html">Piso 1</a>
+    <a href="#">Inicio</a>
+    <a href="#">Piso 1</a>
 
     <div class="dropdown">
         <a>Piso 2 ▼</a>
         <div class="dropdown-content">
-            <a href="piso2.html">Piso 2</a>
-            <a href="uci6.html">UCI</a>
-            <a href="uti18.html">UTI</a>
+            <a href="#">Piso 2</a>
+            <a href="#">UCI</a>
+            <a href="#">UTI</a>
         </div>
     </div>
 
-    <a href="obstetricia.html">Obstetricia</a>
+    <a href="#">Obstetricia</a>
 </div>
 
-<!-- CONTENIDO -->
 <div class="main">
 
-    <!-- IZQUIERDA -->
-    <div class="sidebar">
+<div class="sidebar">
 
-        <h2>Indicadores</h2>
+<h2>Indicadores</h2>
+<div class="button-group">
+    <button onclick="actualizarBoton(this,'val1','Promedio Dias de Estadia')">Días Estadia</button>
+    <button onclick="actualizarBoton(this,'val1','Indice de Rotacion')">Indice de Rotación</button>
+    <button onclick="actualizarBoton(this,'val1','Promedio de Camas Disponibles')">Promedio Camas</button>
+    <button onclick="actualizarBoton(this,'val1','Indice de Sustitucion')">Indice Sustitución</button>
+    <button onclick="actualizarBoton(this,'val1','Indice de Ocupacion')">Indice Ocupación</button>
+    <button onclick="actualizarBoton(this,'val1','Lealtad')">Lealtad</button>
+</div>
 
-        <div class="button-group">
-            <button onclick="actualizarBoton(this,'val1','Promedio Dias de Estadia')">Días Estadia</button>
-            <button onclick="actualizarBoton(this,'val1','Indice de Rotacion')">Indice de Rotación</button>
-            <button onclick="actualizarBoton(this,'val1','Promedio de Camas Disponibles')">Promedio de Camas Disponibles</button>
-            <button onclick="actualizarBoton(this,'val1','Indice de Sustitucion')">Indice de Sustitucion</button>
-            <button onclick="actualizarBoton(this,'val1','Indice de Ocupacion')">Indice de Ocupacion</button>
-            <button onclick="actualizarBoton(this,'val1','Lealtad')">Lealtad</button>
-        </div>
+<h2>Año</h2>
+<div class="button-group">
+    <button onclick="actualizarBoton(this,'val2','2023')">2023</button>
+    <button onclick="actualizarBoton(this,'val2','2024')">2024</button>
+    <button onclick="actualizarBoton(this,'val2','2025')">2025</button>
+</div>
 
-        <h2>Año</h2>
+<h2>Mes</h2>
+<select onchange="actualizarMes()">
+    <option disabled selected>Seleccionar Mes</option>
+    <option>Enero</option>
+    <option>Febrero</option>
+    <option>Marzo</option>
+    <option>Abril</option>
+    <option>Mayo</option>
+    <option>Junio</option>
+    <option>Julio</option>
+    <option>Agosto</option>
+    <option>Septiembre</option>
+    <option>Octubre</option>
+    <option>Noviembre</option>
+    <option>Diciembre</option>
+</select>
 
-        <div class="button-group">
-            <button onclick="actualizarBoton(this,'val2','2023')">2023</button>
-            <button onclick="actualizarBoton(this,'val2','2024')">2024</button>
-            <button onclick="actualizarBoton(this,'val2','2025')">2025</button>
-        </div>
+</div>
 
-        <h2>Mes</h2>
+<div class="center">
 
-        <select onchange="actualizarMes()">
-            <option disabled selected>Seleccionar Mes</option>
-            <option>Enero</option>
-            <option>Febrero</option>
-            <option>Marzo</option>
-            <option>Abril</option>
-            <option>Mayo</option>
-            <option>Junio</option>
-            <option>Julio</option>
-            <option>Agosto</option>
-            <option>Septiembre</option>
-            <option>Octubre</option>
-            <option>Noviembre</option>
-            <option>Diciembre</option>
-        </select>
+<model-viewer id="visor" src="camas24.glb" camera-controls></model-viewer>
 
-    </div>
+<div class="controles">
+    <button onclick="moverArriba()">⬆️</button>
+    <button onclick="moverAbajo()">⬇️</button>
+    <button onclick="moverIzquierda()">⬅️</button>
+    <button onclick="moverDerecha()">➡️</button>
+    <button onclick="zoomIn()">+</button>
+    <button onclick="zoomOut()">-</button>
+</div>
 
-    <!-- CENTRO -->
-    <div class="center">
+</div>
 
-        <model-viewer
-            id="visor"
-            src="camas24.glb"
-            camera-controls>
-        </model-viewer>
+<div class="right-panel">
+<div class="card">
 
-        <div class="controles">
-            <button onclick="moverArriba()">⬆️</button>
-            <button onclick="moverAbajo()">⬇️</button>
-            <button onclick="moverIzquierda()">⬅️</button>
-            <button onclick="moverDerecha()">➡️</button>
-            <button onclick="zoomIn()">+</button>
-            <button onclick="zoomOut()">-</button>
-        </div>
+<div class="item">
+    <div class="label">Indicador</div>
+    <div id="val1" class="value">—</div>
+</div>
 
-    </div>
+<div class="item">
+    <div class="label">Año</div>
+    <div id="val2" class="value">—</div>
+</div>
 
-    <!-- DERECHA -->
-    <div class="right-panel">
+<div class="item">
+    <div class="label">Mes</div>
+    <div id="val3" class="value">—</div>
+</div>
 
-        <div class="card">
+<h2 id="valorFinal">--</h2>
 
-            <div class="item">
-                <div class="label">Indicador</div>
-                <div id="val1" class="value">—</div>
-            </div>
-
-            <div class="item">
-                <div class="label">Año</div>
-                <div id="val2" class="value">—</div>
-            </div>
-
-            <div class="item">
-                <div class="label">Mes</div>
-                <div id="val3" class="value">—</div>
-            </div>
-
-            <h2 id="valorFinal">--</h2>
-
-        </div>
-
-    </div>
+</div>
+</div>
 
 </div>
 
@@ -271,6 +243,9 @@ let indicador = "";
 let anio = "";
 let mes = "";
 
+// 🔴 CAMBIA ESTO CUANDO TENGAS API REAL
+const API_URL = null; // ejemplo: "http://localhost:3000/obstetricia"
+
 // ================= CAMERA =================
 function actualizarCamara() {
     visor.cameraOrbit = `${theta}deg ${phi}deg ${radius}m`;
@@ -280,7 +255,7 @@ function moverIzquierda(){ theta -= 10; actualizarCamara(); }
 function moverDerecha(){ theta += 10; actualizarCamara(); }
 function moverArriba(){ phi -= 10; actualizarCamara(); }
 function moverAbajo(){ phi += 10; actualizarCamara(); }
-function zoomIn(){ radius -= 0.3; actualizarCamara(); }
+function zoomIn(){ radius = Math.max(1, radius - 0.3); actualizarCamara(); }
 function zoomOut(){ radius += 0.3; actualizarCamara(); }
 
 // ================= BOTONES =================
@@ -306,22 +281,33 @@ function actualizarMes() {
     obtenerDatos();
 }
 
-// ================= API =================
+// ================= API / MOCK =================
 async function obtenerDatos() {
 
-    // Validar que todos los campos estén seleccionados
     if(!indicador || !anio || !mes) return;
 
+    document.getElementById("valorFinal").innerText = "Cargando...";
+
+    // 🟢 SI NO HAY API → usa simulación
+    if(!API_URL){
+        setTimeout(() => {
+            const valor = (Math.random() * 10).toFixed(2);
+            document.getElementById("valorFinal").innerText = valor;
+        }, 400);
+        return;
+    }
+
+    // 🔵 SI HAY API REAL
     try {
         const response = await fetch(
-            `https://tu-api.com/obstetricia?indicador=${encodeURIComponent(indicador)}&anio=${anio}&mes=${mes}`
+            `${API_URL}?indicador=${encodeURIComponent(indicador)}&anio=${anio}&mes=${mes}`
         );
 
-        if(!response.ok) throw new Error("Error en la API");
+        if(!response.ok) throw new Error("API error");
 
         const data = await response.json();
 
-        document.getElementById("valorFinal").innerText = data.valor;
+        document.getElementById("valorFinal").innerText = data.valor ?? "Sin datos";
 
     } catch (error) {
         console.error(error);
@@ -329,6 +315,7 @@ async function obtenerDatos() {
     }
 }
 </script>
+
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js"></script>
 
 </body>
