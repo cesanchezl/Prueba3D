@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Visor 3D - UTI</title>
+<title>Visor 3D - Obstetricia</title>
 
 <style>
 *{
@@ -16,10 +16,9 @@ body{
     background:#eef2f7;
 }
 
-/* NAVBAR */
 .navbar{
     display:flex;
-    background:#333;
+    background-color:#333;
 }
 
 .navbar a{
@@ -29,7 +28,7 @@ body{
 }
 
 .navbar a:hover{
-    background:#575757;
+    background-color:#575757;
 }
 
 .dropdown{
@@ -44,22 +43,20 @@ body{
     z-index:100;
 }
 
-.dropdown-content a{
-    color:#333;
-    display:block;
-}
-
 .dropdown:hover .dropdown-content{
     display:block;
 }
 
-/* MAIN */
+.dropdown-content a{
+    display:block;
+    color:#333;
+}
+
 .main{
     display:flex;
     height:calc(100vh - 48px);
 }
 
-/* SIDEBAR */
 .sidebar{
     width:260px;
     background:white;
@@ -68,16 +65,11 @@ body{
     border-right:1px solid #ddd;
 }
 
-.sidebar h2{
-    margin-top:10px;
-    color:#2c2c54;
-}
-
 .button-group{
     display:flex;
     flex-direction:column;
     gap:8px;
-    margin-bottom:20px;
+    margin-bottom:15px;
 }
 
 .button-group button{
@@ -87,7 +79,6 @@ body{
     background:#f1f3f7;
     cursor:pointer;
     transition:0.2s;
-    font-size:14px;
 }
 
 .button-group button:hover{
@@ -99,7 +90,13 @@ body{
     color:white;
 }
 
-/* CENTER */
+select{
+    width:100%;
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+
 .center{
     flex:1;
     display:flex;
@@ -107,36 +104,33 @@ body{
     align-items:center;
     justify-content:center;
     background:#4a6cf7;
-    position:relative;
 }
 
 model-viewer{
     width:85%;
     height:500px;
-    background:transparent;
 }
 
 .controles{
     margin-top:15px;
     display:flex;
     gap:10px;
+    flex-wrap:wrap;
 }
 
 .controles button{
-    padding:10px 14px;
+    padding:10px;
     border:none;
     border-radius:8px;
     background:#2c2c54;
     color:white;
     cursor:pointer;
-    font-size:16px;
 }
 
 .controles button:hover{
     background:#40407a;
 }
 
-/* RIGHT PANEL */
 .right-panel{
     width:320px;
     background:white;
@@ -147,7 +141,7 @@ model-viewer{
 .card{
     background:#2c2c54;
     color:white;
-    padding:25px;
+    padding:20px;
     border-radius:20px;
 }
 
@@ -166,10 +160,16 @@ model-viewer{
 }
 
 #valorFinal{
-    margin-top:30px;
-    font-size:42px;
+    font-size:40px;
+    margin-top:20px;
     text-align:center;
-    color:#00ffcc;
+}
+
+.estado{
+    margin-top:15px;
+    text-align:center;
+    font-size:14px;
+    opacity:0.8;
 }
 </style>
 </head>
@@ -191,10 +191,9 @@ model-viewer{
         </div>
     </div>
 
-    <a href="uti.html">UTI</a>
+    <a href="obstetricia.html">Obstetricia</a>
 </div>
 
-<!-- MAIN -->
 <div class="main">
 
     <!-- SIDEBAR -->
@@ -204,28 +203,28 @@ model-viewer{
 
         <div class="button-group">
 
-            <button onclick="actualizarBoton(this,'val1','Promedio Dias de Estadia')">
+            <button onclick="seleccionarIndicador(this,'Promedio Días Estada')">
                 Días Estadia
             </button>
 
-            <button onclick="actualizarBoton(this,'val1','Indice de Rotacion')">
-                Índice Rotación
+            <button onclick="seleccionarIndicador(this,'Índice de Rotación')">
+                Índice de Rotación
             </button>
 
-            <button onclick="actualizarBoton(this,'val1','Promedio de Camas Disponibles')">
+            <button onclick="seleccionarIndicador(this,'Promedio Camas Disponibles')">
                 Promedio Camas
             </button>
 
-            <button onclick="actualizarBoton(this,'val1','Indice de Sustitucion')">
+            <button onclick="seleccionarIndicador(this,'Índice de Sustitución')">
                 Índice Sustitución
             </button>
 
-            <button onclick="actualizarBoton(this,'val1','Indice de Ocupacion')">
+            <button onclick="seleccionarIndicador(this,'Índice de Ocupación')">
                 Índice Ocupación
             </button>
 
-            <button onclick="actualizarBoton(this,'val1','Lealtad')">
-                Lealtad
+            <button onclick="seleccionarIndicador(this,'Letalidad')">
+                Letalidad
             </button>
 
         </div>
@@ -234,15 +233,15 @@ model-viewer{
 
         <div class="button-group">
 
-            <button onclick="actualizarBoton(this,'val2','2023')">
+            <button onclick="seleccionarAnio(this,'2023')">
                 2023
             </button>
 
-            <button onclick="actualizarBoton(this,'val2','2024')">
+            <button onclick="seleccionarAnio(this,'2024')">
                 2024
             </button>
 
-            <button onclick="actualizarBoton(this,'val2','2025')">
+            <button onclick="seleccionarAnio(this,'2025')">
                 2025
             </button>
 
@@ -250,37 +249,35 @@ model-viewer{
 
         <h2>Mes</h2>
 
-        <select onchange="actualizarMes()" style="width:100%;padding:10px;border-radius:8px;">
+        <select id="mesSelect" onchange="actualizarMes()">
 
-            <option disabled selected>Seleccionar Mes</option>
+            <option value="">Seleccionar Mes</option>
 
-            <option>Enero</option>
-            <option>Febrero</option>
-            <option>Marzo</option>
-            <option>Abril</option>
-            <option>Mayo</option>
-            <option>Junio</option>
-            <option>Julio</option>
-            <option>Agosto</option>
-            <option>Septiembre</option>
-            <option>Octubre</option>
-            <option>Noviembre</option>
-            <option>Diciembre</option>
+            <option value="1">Enero</option>
+            <option value="2">Febrero</option>
+            <option value="3">Marzo</option>
+            <option value="4">Abril</option>
+            <option value="5">Mayo</option>
+            <option value="6">Junio</option>
+            <option value="7">Julio</option>
+            <option value="8">Agosto</option>
+            <option value="9">Septiembre</option>
+            <option value="10">Octubre</option>
+            <option value="11">Noviembre</option>
+            <option value="12">Diciembre</option>
 
         </select>
 
     </div>
 
-    <!-- CENTER -->
+    <!-- CENTRO -->
     <div class="center">
 
         <model-viewer
             id="visor"
             src="camas18.glb"
             camera-controls
-            auto-rotate
-            shadow-intensity="1">
-
+            auto-rotate>
         </model-viewer>
 
         <div class="controles">
@@ -289,14 +286,14 @@ model-viewer{
             <button onclick="moverAbajo()">⬇️</button>
             <button onclick="moverIzquierda()">⬅️</button>
             <button onclick="moverDerecha()">➡️</button>
-            <button onclick="zoomIn()">＋</button>
-            <button onclick="zoomOut()">－</button>
+            <button onclick="zoomIn()">+</button>
+            <button onclick="zoomOut()">-</button>
 
         </div>
 
     </div>
 
-    <!-- RIGHT PANEL -->
+    <!-- PANEL DERECHO -->
     <div class="right-panel">
 
         <div class="card">
@@ -321,7 +318,14 @@ model-viewer{
                 <div id="val3" class="value">—</div>
             </div>
 
-            <h2 id="valorFinal">--</h2>
+            <div class="item">
+                <div class="label">Valor Calculado</div>
+                <h2 id="valorFinal">--</h2>
+            </div>
+
+            <div id="estado" class="estado">
+                Selecciona filtros
+            </div>
 
         </div>
 
@@ -329,7 +333,6 @@ model-viewer{
 
 </div>
 
-<!-- SCRIPT -->
 <script>
 
 const visor = document.getElementById("visor");
@@ -342,10 +345,10 @@ let indicador = "";
 let anio = "";
 let mes = "";
 
-/* API */
 const API_URL = "https://api-hsjmelipilla.onrender.com/api/valores/";
 
-/* CAMERA */
+// ================= CAMERA =================
+
 function actualizarCamara(){
     visor.cameraOrbit = `${theta}deg ${phi}deg ${radius}m`;
 }
@@ -380,96 +383,117 @@ function zoomOut(){
     actualizarCamara();
 }
 
-/* BOTONES */
-function actualizarBoton(btn,id,texto){
+// ================= FILTROS =================
 
-    btn.parentElement
-       .querySelectorAll("button")
-       .forEach(b => b.classList.remove("active"));
+function seleccionarIndicador(btn,texto){
+
+    document
+        .querySelectorAll(".sidebar .button-group:first-of-type button")
+        .forEach(b => b.classList.remove("active"));
 
     btn.classList.add("active");
 
-    document.getElementById(id).innerText = texto;
+    indicador = texto;
 
-    if(id === "val1"){
-        indicador = texto;
-    }
-
-    if(id === "val2"){
-        anio = texto;
-    }
+    document.getElementById("val1").innerText = texto;
 
     obtenerDatos();
 }
 
-/* MES */
+function seleccionarAnio(btn,texto){
+
+    document
+        .querySelectorAll(".sidebar .button-group:nth-of-type(2) button")
+        .forEach(b => b.classList.remove("active"));
+
+    btn.classList.add("active");
+
+    anio = parseInt(texto);
+
+    document.getElementById("val2").innerText = texto;
+
+    obtenerDatos();
+}
+
 function actualizarMes(){
 
-    const select = document.querySelector("select");
+    const select = document.getElementById("mesSelect");
 
-    mes = select.value;
+    mes = parseInt(select.value);
 
-    document.getElementById("val3").innerText = mes;
+    const nombreMes =
+        select.options[select.selectedIndex].text;
+
+    document.getElementById("val3").innerText = nombreMes;
 
     obtenerDatos();
 }
 
-/* API */
+// ================= API =================
+
 async function obtenerDatos(){
 
     if(!indicador || !anio || !mes){
         return;
     }
 
-    document.getElementById("valorFinal").innerText = "Cargando...";
+    const estado = document.getElementById("estado");
+    const valorFinal = document.getElementById("valorFinal");
+
+    estado.innerText = "Consultando API...";
+    valorFinal.innerText = "...";
 
     try{
 
-        const url =
-        `${API_URL}?servicio=uti&indicador=${encodeURIComponent(indicador)}&anio=${anio}&mes=${encodeURIComponent(mes)}`;
-
-        console.log("URL API:", url);
-
-        const response = await fetch(url);
+        const response = await fetch(API_URL);
 
         if(!response.ok){
-            throw new Error("Error HTTP: " + response.status);
+            throw new Error("Error HTTP " + response.status);
         }
 
-        const data = await response.json();
+        const datos = await response.json();
 
-        console.log("RESPUESTA API:", data);
+        console.log("DATOS API:", datos);
 
-        let valor = null;
+        // buscar coincidencia exacta
+        const resultado = datos.find(item =>
 
-        if(data.valor !== undefined){
-            valor = data.valor;
+            item.servicio_nombre === "UTI" &&
+            item.indicador_nombre === indicador &&
+            item.anio === anio &&
+            item.mes === mes
+        );
+
+        console.log("RESULTADO:", resultado);
+
+        if(resultado){
+
+            valorFinal.innerText = resultado.valor_calculado;
+
+            estado.innerText = "Datos cargados correctamente";
+
+        }else{
+
+            valorFinal.innerText = "Sin datos";
+
+            estado.innerText =
+                `No existen datos para ${anio}`;
         }
-        else if(data.data && data.data.valor !== undefined){
-            valor = data.data.valor;
-        }
-        else if(Array.isArray(data) && data.length > 0){
-            valor = data[0].valor;
-        }
 
-        document.getElementById("valorFinal").innerText =
-            valor !== null && valor !== undefined
-            ? valor
-            : "Sin datos";
+    }catch(error){
 
-    }
-    catch(error){
+        console.error(error);
 
-        console.error("ERROR API:", error);
+        valorFinal.innerText = "ERROR";
 
-        document.getElementById("valorFinal").innerText =
-            "Error API";
+        estado.innerText = "Error al conectar API";
     }
 }
 
 </script>
 
-<script type="module"
+<script
+type="module"
 src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js">
 </script>
 
