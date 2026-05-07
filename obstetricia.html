@@ -240,7 +240,7 @@ model-viewer{
             <button onclick="seleccionarAnio(this,'2024')">
                 2024
             </button>
-            
+
             <button onclick="seleccionarAnio(this,'2025')">
                 2025
             </button>
@@ -474,9 +474,10 @@ async function obtenerDatos(){
 
         }else{
 
-            valorFinal.innerText = "--";
+            valorFinal.innerText = "Sin datos";
 
-            estado.innerText = "No hay datos disponibles";
+            estado.innerText =
+                `No existen datos para ${anio}`;
         }
 
     }catch(error){
