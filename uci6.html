@@ -191,7 +191,7 @@ model-viewer{
         </div>
     </div>
 
-    <a href="uci.html">UCI</a>
+    <a href="obstetricia.html">Obstetricia</a>
 </div>
 
 <!-- MAIN -->
@@ -414,56 +414,63 @@ function actualizarMes(){
     obtenerDatos();
 }
 
-/* API */
+
 async function obtenerDatos(){
 
     if(!indicador || !anio || !mes){
         return;
     }
 
-    document.getElementById("valorFinal").innerText = "Cargando...";
+    const estado = document.getElementById("estado");
+    const valorFinal = document.getElementById("valorFinal");
+
+    estado.innerText = "Consultando API...";
+    valorFinal.innerText = "...";
 
     try{
 
-        const url =
-        `${API_URL}?servicio=uci&indicador=${encodeURIComponent(indicador)}&anio=${anio}&mes=${encodeURIComponent(mes)}`;
-
-        console.log("URL API:", url);
-
-        const response = await fetch(url);
+        const response = await fetch(API_URL);
 
         if(!response.ok){
-            throw new Error("Error HTTP: " + response.status);
+            throw new Error("Error HTTP " + response.status);
         }
 
-        const data = await response.json();
+        const datos = await response.json();
 
-        console.log("RESPUESTA API:", data);
+        console.log("DATOS API:", datos);
 
-        let valor = null;
+        // buscar coincidencia exacta
+        const resultado = datos.find(item =>
 
-        if(data.valor !== undefined){
-            valor = data.valor;
+            item.servicio_nombre === "UCI" &&
+            item.indicador_nombre === indicador &&
+            item.anio === anio &&
+            item.mes === mes
+        );
+
+        console.log("RESULTADO:", resultado);
+
+        if(resultado){
+
+            valorFinal.innerText = resultado.valor_calculado;
+
+            estado.innerText = "Datos cargados correctamente";
+
+        }else{
+
+            valorFinal.innerText = "Sin datos";
+
+            estado.innerText =
+                `No existen datos para ${anio}`;
         }
-        else if(data.data && data.data.valor !== undefined){
-            valor = data.data.valor;
-        }
-        else if(Array.isArray(data) && data.length > 0){
-            valor = data[0].valor;
-        }
 
-        document.getElementById("valorFinal").innerText =
-            valor !== null && valor !== undefined
-            ? valor
-            : "Sin datos";
+    }catch(error){
 
-    }
-    catch(error){
+        console.error(error);
 
-        console.error("ERROR API:", error);
+        valorFinal.innerText = "ERROR";
 
-        document.getElementById("valorFinal").innerText =
-            "Error API";
+        estado.innerText = "Error al conectar API";
     }
 }
 
