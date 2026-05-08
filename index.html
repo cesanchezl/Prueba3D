@@ -16,15 +16,20 @@ body{
     background:#eef2f7;
 }
 
+/* NAVBAR */
 .navbar{
     display:flex;
+    align-items:center;
     background-color:#333;
+    height:48px;
 }
 
 .navbar a{
     color:white;
     padding:14px 16px;
     text-decoration:none;
+    min-width:110px;
+    text-align:center;
 }
 
 .navbar a:hover{
@@ -49,33 +54,41 @@ body{
     background-color:#575757;
 }
 
+/* MAIN */
 .main{
     display:flex;
     height:calc(100vh - 48px);
 }
 
+/* SIDEBAR */
 .sidebar{
-    width:260px;
+    width:240px;
     background:white;
-    padding:20px;
-    overflow-y:auto;
+    padding:14px;
     border-right:1px solid #ddd;
+    overflow:hidden;
+}
+
+.sidebar h2{
+    margin:10px 0;
+    font-size:20px;
 }
 
 .button-group{
     display:flex;
     flex-direction:column;
-    gap:8px;
-    margin-bottom:15px;
+    gap:6px;
+    margin-bottom:12px;
 }
 
 .button-group button{
-    padding:10px;
+    padding:8px;
     border:none;
     border-radius:8px;
     background:#f1f3f7;
     cursor:pointer;
     transition:0.2s;
+    font-size:14px;
 }
 
 .button-group button:hover{
@@ -89,11 +102,13 @@ body{
 
 select{
     width:100%;
-    padding:10px;
+    padding:8px;
     border-radius:8px;
     border:1px solid #ccc;
+    font-size:14px;
 }
 
+/* CENTRO */
 .center{
     flex:1;
     display:flex;
@@ -105,11 +120,11 @@ select{
 
 model-viewer{
     width:85%;
-    height:500px;
+    height:460px;
 }
 
 .controles{
-    margin-top:15px;
+    margin-top:12px;
     display:flex;
     gap:10px;
     flex-wrap:wrap;
@@ -128,22 +143,23 @@ model-viewer{
     background:#40407a;
 }
 
+/* PANEL DERECHO */
 .right-panel{
-    width:320px;
+    width:300px;
     background:white;
-    padding:20px;
+    padding:16px;
     border-left:1px solid #ddd;
 }
 
 .card{
     background:#2c2c54;
     color:white;
-    padding:20px;
+    padding:18px;
     border-radius:20px;
 }
 
 .item{
-    margin-bottom:18px;
+    margin-bottom:16px;
 }
 
 .label{
@@ -157,13 +173,13 @@ model-viewer{
 }
 
 #valorFinal{
-    font-size:40px;
-    margin-top:20px;
+    font-size:38px;
+    margin-top:18px;
     text-align:center;
 }
 
 .estado{
-    margin-top:15px;
+    margin-top:12px;
     text-align:center;
     font-size:14px;
     opacity:0.8;
@@ -173,6 +189,7 @@ model-viewer{
 
 <body>
 
+<!-- NAVBAR -->
 <div class="navbar">
 
     <a href="index.html">Inicio</a>
@@ -193,19 +210,12 @@ model-viewer{
 
 </div>
 
-
-    <a href="obstetricia.html">Obstetricia</a>
-</div>
-
 <div class="main">
 
     <!-- SIDEBAR -->
     <div class="sidebar">
 
-        <h2>Inicio</h2>
-
-        
-        
+        <h2>Bienvenido</h2>
 
        
 
@@ -236,7 +246,9 @@ model-viewer{
 
     <!-- PANEL DERECHO -->
     <div class="right-panel">
- <h2>Hospital De Melipilla</h2>
+
+        <h2>Hospital Melipilla</h2>
+
         
 </div>
 
@@ -253,6 +265,15 @@ let anio = "";
 let mes = "";
 
 const API_URL = "https://api-hsjmelipilla.onrender.com/api/valores/";
+
+// ================= NAVBAR =================
+
+function irAPagina(url){
+
+    if(url){
+        window.location.href = url;
+    }
+}
 
 // ================= CAMERA =================
 
@@ -295,7 +316,7 @@ function zoomOut(){
 function seleccionarIndicador(btn,texto){
 
     document
-        .querySelectorAll(".sidebar .button-group:first-of-type button")
+        .querySelectorAll(".sidebar .button-group button")
         .forEach(b => b.classList.remove("active"));
 
     btn.classList.add("active");
@@ -307,20 +328,20 @@ function seleccionarIndicador(btn,texto){
     obtenerDatos();
 }
 
-function seleccionarAnio(btn,texto){
+// ================= AÑO =================
 
-    document
-        .querySelectorAll(".sidebar .button-group:nth-of-type(2) button")
-        .forEach(b => b.classList.remove("active"));
+function actualizarAnio(){
 
-    btn.classList.add("active");
+    const select = document.getElementById("anioSelect");
 
-    anio = parseInt(texto);
+    anio = parseInt(select.value);
 
-    document.getElementById("val2").innerText = texto;
+    document.getElementById("val2").innerText = select.value;
 
     obtenerDatos();
 }
+
+// ================= MES =================
 
 function actualizarMes(){
 
@@ -340,7 +361,7 @@ function actualizarMes(){
 
 async function obtenerDatos(){
 
-    if(!indicador || !anio || !mes){
+    if(!indicador || !anio || mes === ""){
         return;
     }
 
@@ -362,10 +383,44 @@ async function obtenerDatos(){
 
         console.log("DATOS API:", datos);
 
-        // buscar coincidencia exacta
+        // ================= TODOS LOS MESES =================
+        if(mes === 0){
+
+            const resultados = datos.filter(item =>
+
+                item.servicio_nombre === "UTI" &&
+                item.indicador_nombre === indicador &&
+                item.anio === anio
+            );
+
+            if(resultados.length > 0){
+
+                const suma = resultados.reduce((total,item) => {
+
+                    return total + Number(item.valor_calculado);
+
+                },0);
+
+                valorFinal.innerText = suma.toFixed(2);
+
+                estado.innerText =
+                    "Suma total de todos los meses";
+
+            }else{
+
+                valorFinal.innerText = "Sin datos";
+
+                estado.innerText =
+                    `No existen datos para ${anio}`;
+            }
+
+            return;
+        }
+
+        // ================= MES INDIVIDUAL =================
         const resultado = datos.find(item =>
 
-            item.servicio_nombre === "Obstetricia" &&
+            item.servicio_nombre === "UTI" &&
             item.indicador_nombre === indicador &&
             item.anio === anio &&
             item.mes === mes
