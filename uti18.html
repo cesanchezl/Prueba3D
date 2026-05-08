@@ -205,7 +205,7 @@ model-viewer{
 
     <select class="navbar-select" onchange="irAPagina(this.value)">
         <option value="">Piso 4 ▼</option>
-        <option value="obstetricia.html">Obstretricia</option>
+        <option value="obstetricia.html">Obstetricia</option>
     </select>
 
 </div>
@@ -266,6 +266,8 @@ model-viewer{
         <select id="mesSelect" onchange="actualizarMes()">
 
             <option value="">Seleccionar Mes</option>
+
+            <option value="0">Todos los meses</option>
 
             <option value="1">Enero</option>
             <option value="2">Febrero</option>
@@ -456,7 +458,7 @@ function actualizarMes(){
 
 async function obtenerDatos(){
 
-    if(!indicador || !anio || !mes){
+    if(!indicador || !anio || mes === ""){
         return;
     }
 
@@ -478,6 +480,41 @@ async function obtenerDatos(){
 
         console.log("DATOS API:", datos);
 
+        // ================= TODOS LOS MESES =================
+        if(mes === 0){
+
+            const resultados = datos.filter(item =>
+
+                item.servicio_nombre === "UTI" &&
+                item.indicador_nombre === indicador &&
+                item.anio === anio
+            );
+
+            if(resultados.length > 0){
+
+                const suma = resultados.reduce((total,item) => {
+
+                    return total + Number(item.valor_calculado);
+
+                },0);
+
+                valorFinal.innerText = suma.toFixed(2);
+
+                estado.innerText =
+                    "Suma total de todos los meses";
+
+            }else{
+
+                valorFinal.innerText = "Sin datos";
+
+                estado.innerText =
+                    `No existen datos para ${anio}`;
+            }
+
+            return;
+        }
+
+        // ================= MES INDIVIDUAL =================
         const resultado = datos.find(item =>
 
             item.servicio_nombre === "UTI" &&
