@@ -12,34 +12,39 @@ body {
 /* NAVBAR */
 .navbar {
   display: flex;
+  align-items: center;
   background-color: #333;
+  height: 48px;
 }
 
-.navbar a {
-  color: white;
-  padding: 14px 16px;
+/* TODOS LOS ELEMENTOS MISMO ANCHO */
+.navbar a,
+.navbar-select {
+  width: 110px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  text-align: center;
+  font-size: 16px;
+  border: none;
   text-decoration: none;
+  background: #333;
+  color: white;
+  cursor: pointer;
 }
 
-.navbar a:hover {
+/* HOVER */
+.navbar a:hover,
+.navbar-select:hover {
   background-color: #575757;
 }
-/* SELECT NAVBAR */
-.navbar-select{
-    background:#333;
-    color:white;
-    border:none;
-    padding:14px 10px;
-    font-size:16px;
-    cursor:pointer;
-    outline:none;
-    width:95px; /* ancho reducido */
-    height:48px;
-    text-align:center;
-}
 
-.navbar-select:hover{
-    background-color:#575757;
+/* SELECT NAVBAR */
+.navbar-select {
+  appearance: none;
+  outline: none;
 }
 
 /* DROPDOWN */
