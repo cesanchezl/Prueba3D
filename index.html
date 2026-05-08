@@ -31,25 +31,22 @@ body{
     background-color:#575757;
 }
 
-.dropdown{
-    position:relative;
+/* SELECT NAVBAR */
+.navbar-select{
+    background:#333;
+    color:white;
+    border:none;
+    padding:14px 16px;
+    font-size:16px;
+    cursor:pointer;
+    outline:none;
+    min-width:110px;
+    height:48px;
+    text-align:center;
 }
 
-.dropdown-content{
-    display:none;
-    position:absolute;
-    background:white;
-    min-width:160px;
-    z-index:100;
-}
-
-.dropdown:hover .dropdown-content{
-    display:block;
-}
-
-.dropdown-content a{
-    display:block;
-    color:#333;
+.navbar-select:hover{
+    background-color:#575757;
 }
 
 .main{
@@ -176,20 +173,26 @@ model-viewer{
 
 <body>
 
-<!-- NAVBAR -->
 <div class="navbar">
+
     <a href="index.html">Inicio</a>
+
     <a href="piso1.html">Piso 1</a>
 
-    <div class="dropdown">
-        <a href="#">Piso 2 ▼</a>
+    <!-- SELECT PISO 2 -->
+    <select class="navbar-select" onchange="irAPagina(this.value)">
+        <option value="">Piso 2 ▼</option>
+        <option value="uci6.html">UCI</option>
+        <option value="uti18.html">UTI</option>
+    </select>
 
-        <div class="dropdown-content">
-            <a href="piso2.html">Piso 2</a>
-            <a href="uci6.html">UCI</a>
-            <a href="uti18.html">UTI</a>
-        </div>
-    </div>
+    <select class="navbar-select" onchange="irAPagina(this.value)">
+        <option value="">Piso 4 ▼</option>
+        <option value="obstetricia.html">Obstetricia</option>
+    </select>
+
+</div>
+
 
     <a href="obstetricia.html">Obstetricia</a>
 </div>
