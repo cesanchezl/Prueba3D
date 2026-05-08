@@ -24,6 +24,23 @@ body {
 .navbar a:hover {
   background-color: #575757;
 }
+/* SELECT NAVBAR */
+.navbar-select{
+    background:#333;
+    color:white;
+    border:none;
+    padding:14px 10px;
+    font-size:16px;
+    cursor:pointer;
+    outline:none;
+    width:95px; /* ancho reducido */
+    height:48px;
+    text-align:center;
+}
+
+.navbar-select:hover{
+    background-color:#575757;
+}
 
 /* DROPDOWN */
 .dropdown {
