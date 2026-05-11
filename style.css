@@ -155,12 +155,16 @@ model-viewer{
 
 .controles button{
 
-    width:64px;
-    height:64px;
+    width:70px;
+    height:70px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
     border:none;
 
-    border-radius:14px;
+    border-radius:16px;
 
     background:#2c2c54;
 
@@ -168,13 +172,13 @@ model-viewer{
 
     cursor:pointer;
 
-    font-size:28px;
+    font-size:30px;
 
     font-weight:bold;
 
     transition:0.2s;
 
-    box-shadow:0 4px 12px rgba(0,0,0,0.25);
+    box-shadow:0 4px 14px rgba(0,0,0,0.25);
 }
 
 .controles button:hover{
