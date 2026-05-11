@@ -462,7 +462,7 @@ function actualizarMes(){
 
 async function obtenerDatos(){
 
-    if(!indicador || !anio || mes === ""){
+    if(!indicador || !anio || isNaN(mes)){
         return;
     }
 
@@ -485,40 +485,40 @@ async function obtenerDatos(){
         console.log("DATOS API:", datos);
 
         // ================= TODOS LOS MESES =================
+        // AHORA toma el valor del MES 0 directamente
         if(mes === 0){
 
-            const resultados = datos.filter(item =>
+            const resultadoMes0 = datos.find(item =>
 
                 item.servicio_nombre === "Obstetricia" &&
                 item.indicador_nombre === indicador &&
-                item.anio === anio
+                item.anio === anio &&
+                item.mes === 0
             );
 
-            if(resultados.length > 0){
+            console.log("RESULTADO MES 0:", resultadoMes0);
 
-                const suma = resultados.reduce((total,item) => {
+            if(resultadoMes0){
 
-                    return total + Number(item.valor_calculado);
-
-                },0);
-
-                valorFinal.innerText = suma.toFixed(2);
+                valorFinal.innerText =
+                    Number(resultadoMes0.valor_calculado).toFixed(2);
 
                 estado.innerText =
-                    "Suma total de todos los meses";
+                    "Datos de todos los meses cargados";
 
             }else{
 
                 valorFinal.innerText = "Sin datos";
 
                 estado.innerText =
-                    `No existen datos para ${anio}`;
+                    `No existen datos acumulados para ${anio}`;
             }
 
             return;
         }
 
         // ================= MES INDIVIDUAL =================
+
         const resultado = datos.find(item =>
 
             item.servicio_nombre === "Obstetricia" &&
@@ -531,9 +531,11 @@ async function obtenerDatos(){
 
         if(resultado){
 
-            valorFinal.innerText = resultado.valor_calculado;
+            valorFinal.innerText =
+                Number(resultado.valor_calculado).toFixed(2);
 
-            estado.innerText = "Datos cargados correctamente";
+            estado.innerText =
+                "Datos cargados correctamente";
 
         }else{
 
