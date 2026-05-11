@@ -1,149 +1,188 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Visor 3D</title>
+<title>Visor 3D - Piso 1</title>
 
 <style>
-/* RESET */
-* {
-    box-sizing: border-box;
+*{
+    box-sizing:border-box;
 }
 
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: #eef2f7;
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:#eef2f7;
 }
 
 /* NAVBAR */
-.navbar {
-    display: flex;
-    background-color: #333;
+.navbar{
+    display:flex;
+    align-items:center;
+    background-color:#333;
+    height:48px;
 }
 
-.navbar a {
-    color: white;
-    padding: 14px 16px;
-    text-decoration: none;
+.navbar a{
+    color:white;
+    padding:14px 16px;
+    text-decoration:none;
+    min-width:110px;
+    text-align:center;
 }
 
-.navbar a:hover {
-    background-color: #575757;
+.navbar a:hover{
+    background-color:#575757;
 }
 
-/* DROPDOWN */
-.dropdown {
-    position: relative;
+/* SELECT NAVBAR */
+.navbar-select{
+    background:#333;
+    color:white;
+    border:none;
+    padding:14px 16px;
+    font-size:16px;
+    cursor:pointer;
+    outline:none;
+    min-width:110px;
+    height:48px;
+    text-align:center;
 }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background: white;
-    min-width: 160px;
+.navbar-select:hover{
+    background-color:#575757;
 }
 
-.dropdown:hover .dropdown-content {
-    display: block;
+/* MAIN */
+.main{
+    display:flex;
+    height:calc(100vh - 48px);
 }
 
-/* LAYOUT PRINCIPAL */
-.main {
-    display: flex;
-    height: calc(100vh - 48px);
+/* SIDEBAR */
+.sidebar{
+    width:240px;
+    background:white;
+    padding:14px;
+    border-right:1px solid #ddd;
+    overflow:hidden;
 }
 
-/* SIDEBAR IZQUIERDA */
-.sidebar {
-    width: 260px;
-    background: white;
-    padding: 20px;
-    overflow-y: auto;
+.sidebar h2{
+    margin:10px 0;
+    font-size:20px;
 }
 
-.button-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 15px;
+.button-group{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    margin-bottom:12px;
 }
 
-.button-group button {
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    background: #f1f3f7;
-    cursor: pointer;
+.button-group button{
+    padding:8px;
+    border:none;
+    border-radius:8px;
+    background:#f1f3f7;
+    cursor:pointer;
+    transition:0.2s;
+    font-size:14px;
 }
 
-.button-group button.active {
-    background: #2c2c54;
-    color: white;
+.button-group button:hover{
+    background:#dfe4ea;
+}
+
+.button-group button.active{
+    background:#2c2c54;
+    color:white;
+}
+
+select{
+    width:100%;
+    padding:8px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    font-size:14px;
 }
 
 /* CENTRO */
-.center {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: #4a6cf7;
+.center{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background:#4a6cf7;
 }
 
-model-viewer {
-    width: 85%;
-    height: 500px;
+model-viewer{
+    width:85%;
+    height:460px;
 }
 
-/* CONTROLES */
-.controles {
-    margin-top: 15px;
-    display: flex;
-    gap: 10px;
+.controles{
+    margin-top:12px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
 }
 
-.controles button {
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    background: #2c2c54;
-    color: white;
-    cursor: pointer;
+.controles button{
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    background:#2c2c54;
+    color:white;
+    cursor:pointer;
 }
 
-.controles button:hover {
-    background: #40407a;
+.controles button:hover{
+    background:#40407a;
 }
 
 /* PANEL DERECHO */
-.right-panel {
-    width: 300px;
-    background: white;
-    padding: 20px;
+.right-panel{
+    width:300px;
+    background:white;
+    padding:16px;
+    border-left:1px solid #ddd;
 }
 
-.card {
-    background: #2c2c54;
-    color: white;
-    padding: 20px;
-    border-radius: 20px;
+.card{
+    background:#2c2c54;
+    color:white;
+    padding:18px;
+    border-radius:20px;
 }
 
-.item {
-    margin-bottom: 15px;
+.item{
+    margin-bottom:16px;
 }
 
-.label {
-    font-size: 14px;
-    opacity: 0.8;
+.label{
+    font-size:14px;
+    opacity:0.8;
 }
 
-.value {
-    font-size: 18px;
-    font-weight: bold;
+.value{
+    font-size:18px;
+    font-weight:bold;
+}
+
+#valorFinal{
+    font-size:38px;
+    margin-top:18px;
+    text-align:center;
+}
+
+.estado{
+    margin-top:12px;
+    text-align:center;
+    font-size:14px;
+    opacity:0.8;
 }
 </style>
 </head>
@@ -163,62 +202,26 @@ model-viewer {
         <option value="uci6.html">UCI</option>
         <option value="uti18.html">UTI</option>
     </select>
-
     <a href="">Piso 3</a>
 
-    <!-- SELECT PISO 4 -->
     <select class="navbar-select" onchange="irAPagina(this.value)">
         <option value="">Piso 4 ▼</option>
         <option value="obstetricia.html">Obstetricia</option>
     </select>
-
     <a href="">Piso 5</a>
-
-    <a href="">Piso 6</a>
-
+    
+<a href="">Piso 6</a>
     <a href="">Piso 7</a>
-
 </div>
-<!-- CONTENIDO -->
+
 <div class="main">
 
-    <!-- IZQUIERDA -->
+    <!-- SIDEBAR -->
     <div class="sidebar">
 
-        <h2>Indicadores</h2>
+        <h2>Bienvenido</h2>
 
-        <div class="button-group">
-            <button onclick="actualizarBoton(this,'val1','Promedio Dias de Estadia')">Días Estadia</button>
-            <button onclick="actualizarBoton(this,'val1','Indice de Rotacion')">Rotación</button>
-            <button onclick="actualizarBoton(this,'val1','Indice de Ocupacion')">Ocupación</button>
-        </div>
-
-        <h2>Año</h2>
-
-        <div class="button-group">
-            <button onclick="actualizarBoton(this,'val2','2023')">2023</button>
-            <button onclick="actualizarBoton(this,'val2','2024')">2024</button>
-            <button onclick="actualizarBoton(this,'val2','2025')">2025</button>
-        </div>
-
-        <h2>Mes</h2>
-
-        <select onchange="actualizarMes()">
-            <option disabled selected>Seleccionar Mes</option>
-            <option>Enero</option>
-            <option>Febrero</option>
-            <option>Marzo</option>
-            <option>Abril</option>
-            <option>Mayo</option>
-            <option>Junio</option>
-            <option>Julio</option>
-            <option>Agosto</option>
-            <option>Septiembre</option>
-            <option>Octubre</option>
-            <option>Noviembre</option>
-            <option>Diciembre</option>
-        </select>
-
+        
     </div>
 
     <!-- CENTRO -->
@@ -226,42 +229,30 @@ model-viewer {
 
         <model-viewer
             id="visor"
-            src="piso1.glb"
-            camera-controls>
+            src="camas18.glb"
+            camera-controls
+            auto-rotate>
         </model-viewer>
 
         <div class="controles">
+
             <button onclick="moverArriba()">⬆️</button>
             <button onclick="moverAbajo()">⬇️</button>
             <button onclick="moverIzquierda()">⬅️</button>
             <button onclick="moverDerecha()">➡️</button>
             <button onclick="zoomIn()">+</button>
             <button onclick="zoomOut()">-</button>
+
         </div>
 
     </div>
 
-    <!-- DERECHA -->
+    <!-- PANEL DERECHO -->
     <div class="right-panel">
 
         <div class="card">
 
-            <div class="item">
-                <div class="label">Indicador</div>
-                <div id="val1" class="value">—</div>
-            </div>
-
-            <div class="item">
-                <div class="label">Año</div>
-                <div id="val2" class="value">—</div>
-            </div>
-
-            <div class="item">
-                <div class="label">Mes</div>
-                <div id="val3" class="value">—</div>
-            </div>
-
-            <h2 id="valorFinal">--</h2>
+            <h2>Hospital de Melipilla</h2>
 
         </div>
 
@@ -270,39 +261,213 @@ model-viewer {
 </div>
 
 <script>
+
 const visor = document.getElementById("visor");
 
 let theta = 0;
 let phi = 75;
 let radius = 2.5;
 
-function actualizarCamara() {
+let indicador = "";
+let anio = "";
+let mes = "";
+
+const API_URL = "https://api-hsjmelipilla.onrender.com/api/valores/";
+
+// ================= NAVBAR =================
+
+function irAPagina(url){
+
+    if(url){
+        window.location.href = url;
+    }
+}
+
+// ================= CAMERA =================
+
+function actualizarCamara(){
     visor.cameraOrbit = `${theta}deg ${phi}deg ${radius}m`;
 }
 
-function moverIzquierda(){ theta -= 10; actualizarCamara(); }
-function moverDerecha(){ theta += 10; actualizarCamara(); }
-function moverArriba(){ phi -= 10; actualizarCamara(); }
-function moverAbajo(){ phi += 10; actualizarCamara(); }
-function zoomIn(){ radius -= 0.3; actualizarCamara(); }
-function zoomOut(){ radius += 0.3; actualizarCamara(); }
+function moverIzquierda(){
+    theta -= 10;
+    actualizarCamara();
+}
 
-function actualizarBoton(btn, id, texto) {
-    btn.parentElement.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+function moverDerecha(){
+    theta += 10;
+    actualizarCamara();
+}
+
+function moverArriba(){
+    phi -= 10;
+    actualizarCamara();
+}
+
+function moverAbajo(){
+    phi += 10;
+    actualizarCamara();
+}
+
+function zoomIn(){
+    radius = Math.max(1, radius - 0.3);
+    actualizarCamara();
+}
+
+function zoomOut(){
+    radius += 0.3;
+    actualizarCamara();
+}
+
+// ================= FILTROS =================
+
+function seleccionarIndicador(btn,texto){
+
+    document
+        .querySelectorAll(".sidebar .button-group button")
+        .forEach(b => b.classList.remove("active"));
+
     btn.classList.add("active");
-    document.getElementById(id).innerText = texto;
 
-    document.getElementById("valorFinal").innerText =
-        (Math.random() * 5).toFixed(2);
+    indicador = texto;
+
+    document.getElementById("val1").innerText = texto;
+
+    obtenerDatos();
 }
 
-function actualizarMes() {
-    const select = document.querySelector("select");
-    document.getElementById("val3").innerText = select.value;
+// ================= AÑO =================
+
+function actualizarAnio(){
+
+    const select = document.getElementById("anioSelect");
+
+    anio = parseInt(select.value);
+
+    document.getElementById("val2").innerText = select.value;
+
+    obtenerDatos();
 }
+
+// ================= MES =================
+
+function actualizarMes(){
+
+    const select = document.getElementById("mesSelect");
+
+    mes = parseInt(select.value);
+
+    const nombreMes =
+        select.options[select.selectedIndex].text;
+
+    document.getElementById("val3").innerText = nombreMes;
+
+    obtenerDatos();
+}
+
+// ================= API =================
+
+async function obtenerDatos(){
+
+    if(!indicador || !anio || isNaN(mes)){
+        return;
+    }
+
+    const estado = document.getElementById("estado");
+    const valorFinal = document.getElementById("valorFinal");
+
+    estado.innerText = "Consultando API...";
+    valorFinal.innerText = "...";
+
+    try{
+
+        const response = await fetch(API_URL);
+
+        if(!response.ok){
+            throw new Error("Error HTTP " + response.status);
+        }
+
+        const datos = await response.json();
+
+        console.log("DATOS API:", datos);
+
+        // ================= TODOS LOS MESES =================
+        // AHORA toma el valor del MES 0 directamente
+        if(mes === 0){
+
+            const resultadoMes0 = datos.find(item =>
+
+                item.servicio_nombre === "Obstetricia" &&
+                item.indicador_nombre === indicador &&
+                item.anio === anio &&
+                item.mes === 0
+            );
+
+            console.log("RESULTADO MES 0:", resultadoMes0);
+
+            if(resultadoMes0){
+
+                valorFinal.innerText =
+                    Number(resultadoMes0.valor_calculado).toFixed(2);
+
+                estado.innerText =
+                    "Datos de todos los meses cargados";
+
+            }else{
+
+                valorFinal.innerText = "Sin datos";
+
+                estado.innerText =
+                    `No existen datos acumulados para ${anio}`;
+            }
+
+            return;
+        }
+
+        // ================= MES INDIVIDUAL =================
+
+        const resultado = datos.find(item =>
+
+            item.servicio_nombre === "Obstetricia" &&
+            item.indicador_nombre === indicador &&
+            item.anio === anio &&
+            item.mes === mes
+        );
+
+        console.log("RESULTADO:", resultado);
+
+        if(resultado){
+
+            valorFinal.innerText =
+                Number(resultado.valor_calculado).toFixed(2);
+
+            estado.innerText =
+                "Datos cargados correctamente";
+
+        }else{
+
+            valorFinal.innerText = "Sin datos";
+
+            estado.innerText =
+                `No existen datos para ${anio}`;
+        }
+
+    }catch(error){
+
+        console.error(error);
+
+        valorFinal.innerText = "ERROR";
+
+        estado.innerText = "Error al conectar API";
+    }
+}
+
 </script>
 
-<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js"></script>
+<script
+type="module"
+src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js">
+</script>
 
 </body>
 </html>
