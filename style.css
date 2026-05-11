@@ -142,11 +142,11 @@ model-viewer{
 
 .controles{
 
-    margin-top:22px;
+    margin-top:30px;
 
     display:flex;
 
-    gap:18px;
+    gap:22px;
 
     flex-wrap:wrap;
 
@@ -155,8 +155,11 @@ model-viewer{
 
 .controles button{
 
-    width:70px;
-    height:70px;
+    width:90px !important;
+    height:90px !important;
+
+    min-width:90px;
+    min-height:90px;
 
     display:flex;
     align-items:center;
@@ -164,7 +167,7 @@ model-viewer{
 
     border:none;
 
-    border-radius:16px;
+    border-radius:18px;
 
     background:#2c2c54;
 
@@ -172,20 +175,20 @@ model-viewer{
 
     cursor:pointer;
 
-    font-size:30px;
+    font-size:42px !important;
 
     font-weight:bold;
 
     transition:0.2s;
 
-    box-shadow:0 4px 14px rgba(0,0,0,0.25);
+    box-shadow:0 6px 18px rgba(0,0,0,0.30);
 }
 
 .controles button:hover{
 
     background:#40407a;
 
-    transform:scale(1.08);
+    transform:scale(1.12);
 }
 
 /* ================= PANEL DERECHO ================= */
