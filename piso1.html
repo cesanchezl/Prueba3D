@@ -7,18 +7,110 @@
 <title>Visor 3D - Piso 1</title>
 
 <style>
-/* (TU CSS SIN CAMBIOS) */
+/* TU CSS ORIGINAL SIN CAMBIOS */
+*{box-sizing:border-box;}
+
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:#eef2f7;
+}
+
+.navbar{
+    display:flex;
+    align-items:center;
+    background-color:#333;
+    height:48px;
+}
+
+.navbar a{
+    color:white;
+    padding:14px 16px;
+    text-decoration:none;
+    min-width:110px;
+    text-align:center;
+}
+
+.navbar a:hover{
+    background-color:#575757;
+}
+
+.navbar-select{
+    background:#333;
+    color:white;
+    border:none;
+    padding:14px 16px;
+    font-size:16px;
+    cursor:pointer;
+    outline:none;
+    min-width:110px;
+    height:48px;
+    text-align:center;
+}
+
+.navbar-select:hover{
+    background-color:#575757;
+}
+
+.main{
+    display:flex;
+    height:calc(100vh - 48px);
+}
+
+.sidebar{
+    width:240px;
+    background:white;
+    padding:14px;
+    border-right:1px solid #ddd;
+}
+
+.center{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background:#4a6cf7;
+}
+
+model-viewer{
+    width:85%;
+    height:460px;
+}
+
+.controles{
+    margin-top:12px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.controles button{
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    background:#2c2c54;
+    color:white;
+    cursor:pointer;
+}
+
+.right-panel{
+    width:300px;
+    background:white;
+    padding:16px;
+    border-left:1px solid #ddd;
+}
 </style>
 
 </head>
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
+<!-- NAVBAR -->
 <div class="navbar">
 
-    <a href="index.html">🏠 Inicio</a>
-    <a href="piso1.html">📍 Piso 1</a>
+    <a href="index.html">Inicio</a>
+    <a href="piso1.html">Piso 1</a>
 
     <select class="navbar-select" onchange="irAPagina(this.value)">
         <option value="">Piso 2</option>
@@ -26,64 +118,44 @@
         <option value="uti18.html">UTI</option>
     </select>
 
-    <a href="">Piso 3</a>
+    <a href="#">Piso 3</a>
 
     <select class="navbar-select" onchange="irAPagina(this.value)">
         <option value="">Piso 4</option>
         <option value="obstetricia.html">Obstetricia</option>
     </select>
 
-    <a href="">Piso 5</a>
-    <a href="">Piso 6</a>
-    <a href="">Piso 7</a>
-
 </div>
 
-<!-- ================= MAIN ================= -->
+<!-- MAIN -->
 <div class="main">
 
     <!-- SIDEBAR -->
     <div class="sidebar">
 
-        <h2>🧭 Panel de control</h2>
-
-        <p style="font-size:13px; opacity:0.7;">
-            Selecciona un indicador para visualizar datos del servicio.
-        </p>
+        <h2>Bienvenido</h2>
+        <p>Sistema de visualización 3D hospitalario</p>
 
     </div>
 
     <!-- CENTRO -->
     <div class="center">
 
-        <!-- HEADER DASHBOARD -->
-        <div style="text-align:center; margin-bottom:10px; color:white;">
-
-            <h1 style="margin:0; font-size:22px;">
-                🏥 Hospital de Melipilla
-            </h1>
-
-            <p style="margin:4px 0 0; font-size:13px; opacity:0.9;">
-                Visualización 3D de infraestructura hospitalaria
-            </p>
-
-        </div>
-
         <model-viewer
             id="visor"
             src="piso1.glb"
-            camera-controls>
+            camera-controls
+            auto-rotate>
         </model-viewer>
 
-        <!-- CONTROLES -->
         <div class="controles">
 
-            <button title="Subir">⬆️</button>
-            <button title="Bajar">⬇️</button>
-            <button title="Izquierda">⬅️</button>
-            <button title="Derecha">➡️</button>
-            <button title="Zoom +">+</button>
-            <button title="Zoom -">-</button>
+            <button onclick="moverArriba()">⬆️</button>
+            <button onclick="moverAbajo()">⬇️</button>
+            <button onclick="moverIzquierda()">⬅️</button>
+            <button onclick="moverDerecha()">➡️</button>
+            <button onclick="zoomIn()">+</button>
+            <button onclick="zoomOut()">-</button>
 
         </div>
 
@@ -92,31 +164,15 @@
     <!-- PANEL DERECHO -->
     <div class="right-panel">
 
-        <div class="card">
-
-            <h2 style="margin-top:0;">📊 Información</h2>
-
-            <div style="margin-top:10px; font-size:14px; opacity:0.9;">
-
-                Sistema de monitoreo 3D del hospital.
-
-            </div>
-
-            <hr style="border:0; border-top:1px solid rgba(255,255,255,0.2); margin:15px 0;">
-
-            <p style="font-size:13px; opacity:0.8;">
-                Selecciona pisos desde la barra superior para navegar.
-            </p>
-
-        </div>
+        <h2>Hospital de Melipilla</h2>
+        <p>Vista general del piso 1</p>
 
     </div>
 
 </div>
 
+<!-- SCRIPT -->
 <script>
-
-/* ================= CAMARA ================= */
 
 const visor = document.getElementById("visor");
 
@@ -125,34 +181,17 @@ let phi = 75;
 let radius = 2.5;
 
 function irAPagina(url){
-    if(url){
-        window.location.href = url;
-    }
+    if(url) window.location.href = url;
 }
 
 function actualizarCamara(){
     visor.cameraOrbit = `${theta}deg ${phi}deg ${radius}m`;
 }
 
-function moverIzquierda(){
-    theta -= 10;
-    actualizarCamara();
-}
-
-function moverDerecha(){
-    theta += 10;
-    actualizarCamara();
-}
-
-function moverArriba(){
-    phi -= 10;
-    actualizarCamara();
-}
-
-function moverAbajo(){
-    phi += 10;
-    actualizarCamara();
-}
+function moverIzquierda(){ theta -= 10; actualizarCamara(); }
+function moverDerecha(){ theta += 10; actualizarCamara(); }
+function moverArriba(){ phi -= 10; actualizarCamara(); }
+function moverAbajo(){ phi += 10; actualizarCamara(); }
 
 function zoomIn(){
     radius = Math.max(1, radius - 0.3);
