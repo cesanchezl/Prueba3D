@@ -142,40 +142,46 @@ model-viewer{
 
 .controles{
 
-    margin-top:16px;
+    margin-top:22px;
 
     display:flex;
 
-    gap:10px;
+    gap:18px;
 
     flex-wrap:wrap;
+
+    justify-content:center;
 }
 
 .controles button{
 
-    width:42px;
-    height:42px;
+    width:64px;
+    height:64px;
 
     border:none;
 
-    border-radius:10px;
+    border-radius:14px;
 
     background:#2c2c54;
 
     color:white;
 
-    font-size:18px;
-
     cursor:pointer;
 
+    font-size:28px;
+
+    font-weight:bold;
+
     transition:0.2s;
+
+    box-shadow:0 4px 12px rgba(0,0,0,0.25);
 }
 
 .controles button:hover{
 
     background:#40407a;
 
-    transform:translateY(-2px);
+    transform:scale(1.08);
 }
 
 /* ================= PANEL DERECHO ================= */
