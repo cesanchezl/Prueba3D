@@ -4,8 +4,202 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Visor 3D - Inicio</title>
-
 <link rel="stylesheet" href="styles.css">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Visor 3D - Obstetricia</title>
+
+<style>
+
+/* RESET */
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:#eef2f7;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+
+    display:flex;
+    align-items:center;
+
+    background:#222;
+
+    height:56px;
+}
+
+/* TODOS IGUALES */
+
+.navbar a,
+.navbar-select{
+
+    width:120px;
+    height:56px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#222;
+    color:white;
+
+    text-decoration:none;
+
+    border:none;
+    outline:none;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+/* HOVER */
+
+.navbar a:hover,
+.navbar-select:hover{
+
+    background:#444;
+}
+
+/* SELECT */
+
+.navbar-select{
+
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+}
+
+/* OPCIONES */
+
+.navbar-select option{
+
+    background:#222;
+    color:white;
+}
+
+/* ================= MAIN ================= */
+
+.main{
+
+    display:flex;
+
+    height:calc(100vh - 56px);
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+
+    width:240px;
+
+    background:white;
+
+    padding:20px;
+
+    border-right:1px solid #ddd;
+}
+
+.sidebar h2{
+
+    margin-top:0;
+}
+
+/* ================= CENTRO ================= */
+
+.center{
+
+    flex:1;
+
+    display:flex;
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:center;
+
+    background:#4a6cf7;
+}
+
+/* MODEL VIEWER */
+
+model-viewer{
+
+    width:85%;
+    height:500px;
+}
+
+/* ================= CONTROLES ================= */
+
+.controles{
+
+    margin-top:15px;
+
+    display:flex;
+
+    gap:10px;
+}
+
+.controles button{
+
+    width:42px;
+    height:42px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#2c2c54;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:16px;
+}
+
+.controles button:hover{
+
+    background:#40407a;
+}
+
+/* ================= PANEL DERECHO ================= */
+
+.right-panel{
+
+    width:300px;
+
+    background:white;
+
+    padding:20px;
+
+    border-left:1px solid #ddd;
+}
+
+.card{
+
+    background:#2c2c54;
+
+    color:white;
+
+    padding:20px;
+
+    border-radius:20px;
+}
+
+</style>
+
 </head>
 
 <body>
