@@ -38,8 +38,8 @@ body{
     align-items:center;
     justify-content:center;
 
-    background:#222;
-    color:white;
+    background:#222 !important;
+    color:white !important;
 
     border:none;
     outline:none;
@@ -59,7 +59,8 @@ body{
 .navbar a:hover,
 .navbar-select:hover{
 
-    background:#3b3b3b;
+    background:#3b3b3b !important;
+    color:white !important;
 }
 
 /* SELECT */
@@ -71,16 +72,40 @@ body{
     -moz-appearance:none;
 
     text-align:center;
+
+    box-shadow:none !important;
+}
+
+/* FOCUS Y ACTIVE */
+
+.navbar-select:focus,
+.navbar-select:active{
+
+    background:#222 !important;
+    color:white !important;
+
+    outline:none !important;
+
+    box-shadow:none !important;
 }
 
 /* OPCIONES */
 
 .navbar-select option{
 
-    background:#222;
-    color:white;
+    background:#222 !important;
+    color:white !important;
 
     font-size:15px;
+}
+
+/* FIX CHROME */
+
+select{
+
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
 }
 
 /* ================= MAIN ================= */
