@@ -1,260 +1,111 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Visor 3D - Obstetricia</title>
 
-<style>
-*{
-    box-sizing:border-box;
-}
+<title>Visor 3D - Hospital Melipilla</title>
 
-body{
-    margin:0;
-    font-family:'Segoe UI',sans-serif;
-    background:#eef2f7;
-}
-
-/* NAVBAR */
-.navbar{
-    display:flex;
-    align-items:center;
-    background-color:#333;
-    height:48px;
-}
-
-.navbar a{
-    color:white;
-    padding:14px 16px;
-    text-decoration:none;
-    min-width:110px;
-    text-align:center;
-}
-
-.navbar a:hover{
-    background-color:#575757;
-}
-
-/* SELECT NAVBAR */
-.navbar-select{
-    background:#333;
-    color:white;
-    border:none;
-    padding:14px 16px;
-    font-size:16px;
-    cursor:pointer;
-    outline:none;
-    min-width:110px;
-    height:48px;
-    text-align:center;
-}
-
-.navbar-select:hover{
-    background-color:#575757;
-}
-
-/* MAIN */
-.main{
-    display:flex;
-    height:calc(100vh - 48px);
-}
-
-/* SIDEBAR */
-.sidebar{
-    width:240px;
-    background:white;
-    padding:14px;
-    border-right:1px solid #ddd;
-    overflow:hidden;
-}
-
-.sidebar h2{
-    margin:10px 0;
-    font-size:20px;
-}
-
-.button-group{
-    display:flex;
-    flex-direction:column;
-    gap:6px;
-    margin-bottom:12px;
-}
-
-.button-group button{
-    padding:8px;
-    border:none;
-    border-radius:8px;
-    background:#f1f3f7;
-    cursor:pointer;
-    transition:0.2s;
-    font-size:14px;
-}
-
-.button-group button:hover{
-    background:#dfe4ea;
-}
-
-.button-group button.active{
-    background:#2c2c54;
-    color:white;
-}
-
-select{
-    width:100%;
-    padding:8px;
-    border-radius:8px;
-    border:1px solid #ccc;
-    font-size:14px;
-}
-
-/* CENTRO */
-.center{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    background:#4a6cf7;
-}
-
-model-viewer{
-    width:85%;
-    height:460px;
-}
-
-.controles{
-    margin-top:12px;
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-}
-
-.controles button{
-    padding:10px;
-    border:none;
-    border-radius:8px;
-    background:#2c2c54;
-    color:white;
-    cursor:pointer;
-}
-
-.controles button:hover{
-    background:#40407a;
-}
-
-/* PANEL DERECHO */
-.right-panel{
-    width:300px;
-    background:white;
-    padding:16px;
-    border-left:1px solid #ddd;
-}
-
-.card{
-    background:#2c2c54;
-    color:white;
-    padding:18px;
-    border-radius:20px;
-}
-
-.item{
-    margin-bottom:16px;
-}
-
-.label{
-    font-size:14px;
-    opacity:0.8;
-}
-
-.value{
-    font-size:18px;
-    font-weight:bold;
-}
-
-#valorFinal{
-    font-size:38px;
-    margin-top:18px;
-    text-align:center;
-}
-
-.estado{
-    margin-top:12px;
-    text-align:center;
-    font-size:14px;
-    opacity:0.8;
-}
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<div class="navbar">
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
 
     <a href="index.html">Inicio</a>
 
     <a href="piso1.html">Piso 1</a>
 
-    <!-- SELECT PISO 2 -->
+    <!-- PISO 2 -->
     <select class="navbar-select" onchange="irAPagina(this.value)">
         <option value="">Piso 2 ▼</option>
         <option value="uci6.html">UCI</option>
         <option value="uti18.html">UTI</option>
     </select>
-    <a href="">Piso 3</a>
 
+    <a href="#">Piso 3</a>
+
+    <!-- PISO 4 -->
     <select class="navbar-select" onchange="irAPagina(this.value)">
         <option value="">Piso 4 ▼</option>
         <option value="obstetricia.html">Obstetricia</option>
     </select>
-    <a href="">Piso 5</a>
-    
-<a href="">Piso 6</a>
-    <a href="">Piso 7</a>
-</div>
+
+    <a href="#">Piso 5</a>
+
+    <a href="#">Piso 6</a>
+
+    <a href="#">Piso 7</a>
+
+</nav>
+
+<!-- ================= CONTENIDO ================= -->
 
 <div class="main">
 
     <!-- SIDEBAR -->
-    <div class="sidebar">
+    <aside class="sidebar">
 
         <h2>Bienvenido</h2>
 
-       
+        <p>
+            Plataforma interactiva hospitalaria con visualización 3D.
+        </p>
 
-    </div>
+    </aside>
 
     <!-- CENTRO -->
-    <div class="center">
+    <main class="center">
 
         <model-viewer
             id="visor"
             src="piso1.glb"
             camera-controls
             auto-rotate>
+
         </model-viewer>
 
+        <!-- CONTROLES -->
         <div class="controles">
 
             <button onclick="moverArriba()">⬆️</button>
+
             <button onclick="moverAbajo()">⬇️</button>
+
             <button onclick="moverIzquierda()">⬅️</button>
+
             <button onclick="moverDerecha()">➡️</button>
-            <button onclick="zoomIn()">+</button>
-            <button onclick="zoomOut()">-</button>
+
+            <button onclick="zoomIn()">＋</button>
+
+            <button onclick="zoomOut()">－</button>
 
         </div>
 
-    </div>
+    </main>
 
     <!-- PANEL DERECHO -->
-    <div class="right-panel">
+    <aside class="right-panel">
 
-        <h2>Hospital Melipilla</h2>
+        <div class="card">
 
-        
+            <h2>Hospital Melipilla</h2>
+
+            <p>
+                Sistema de monitoreo y visualización de servicios hospitalarios.
+            </p>
+
+        </div>
+
+    </aside>
+
 </div>
+
+<!-- ================= SCRIPT ================= -->
 
 <script>
 
@@ -263,12 +114,6 @@ const visor = document.getElementById("visor");
 let theta = 0;
 let phi = 75;
 let radius = 2.5;
-
-let indicador = "";
-let anio = "";
-let mes = "";
-
-const API_URL = "https://api-hsjmelipilla.onrender.com/api/valores/";
 
 // ================= NAVBAR =================
 
@@ -282,181 +127,56 @@ function irAPagina(url){
 // ================= CAMERA =================
 
 function actualizarCamara(){
-    visor.cameraOrbit = `${theta}deg ${phi}deg ${radius}m`;
+
+    visor.cameraOrbit =
+        `${theta}deg ${phi}deg ${radius}m`;
 }
 
 function moverIzquierda(){
+
     theta -= 10;
+
     actualizarCamara();
 }
 
 function moverDerecha(){
+
     theta += 10;
+
     actualizarCamara();
 }
 
 function moverArriba(){
+
     phi -= 10;
+
     actualizarCamara();
 }
 
 function moverAbajo(){
+
     phi += 10;
+
     actualizarCamara();
 }
 
 function zoomIn(){
+
     radius = Math.max(1, radius - 0.3);
+
     actualizarCamara();
 }
 
 function zoomOut(){
+
     radius += 0.3;
+
     actualizarCamara();
 }
 
-// ================= FILTROS =================
-
-function seleccionarIndicador(btn,texto){
-
-    document
-        .querySelectorAll(".sidebar .button-group button")
-        .forEach(b => b.classList.remove("active"));
-
-    btn.classList.add("active");
-
-    indicador = texto;
-
-    document.getElementById("val1").innerText = texto;
-
-    obtenerDatos();
-}
-
-// ================= AÑO =================
-
-function actualizarAnio(){
-
-    const select = document.getElementById("anioSelect");
-
-    anio = parseInt(select.value);
-
-    document.getElementById("val2").innerText = select.value;
-
-    obtenerDatos();
-}
-
-// ================= MES =================
-
-function actualizarMes(){
-
-    const select = document.getElementById("mesSelect");
-
-    mes = parseInt(select.value);
-
-    const nombreMes =
-        select.options[select.selectedIndex].text;
-
-    document.getElementById("val3").innerText = nombreMes;
-
-    obtenerDatos();
-}
-
-// ================= API =================
-
-async function obtenerDatos(){
-
-    if(!indicador || !anio || mes === ""){
-        return;
-    }
-
-    const estado = document.getElementById("estado");
-    const valorFinal = document.getElementById("valorFinal");
-
-    estado.innerText = "Consultando API...";
-    valorFinal.innerText = "...";
-
-    try{
-
-        const response = await fetch(API_URL);
-
-        if(!response.ok){
-            throw new Error("Error HTTP " + response.status);
-        }
-
-        const datos = await response.json();
-
-        console.log("DATOS API:", datos);
-
-        // ================= TODOS LOS MESES =================
-        if(mes === 0){
-
-            const resultados = datos.filter(item =>
-
-                item.servicio_nombre === "UTI" &&
-                item.indicador_nombre === indicador &&
-                item.anio === anio
-            );
-
-            if(resultados.length > 0){
-
-                const suma = resultados.reduce((total,item) => {
-
-                    return total + Number(item.valor_calculado);
-
-                },0);
-
-                valorFinal.innerText = suma.toFixed(2);
-
-                estado.innerText =
-                    "Suma total de todos los meses";
-
-            }else{
-
-                valorFinal.innerText = "Sin datos";
-
-                estado.innerText =
-                    `No existen datos para ${anio}`;
-            }
-
-            return;
-        }
-
-        // ================= MES INDIVIDUAL =================
-        const resultado = datos.find(item =>
-
-            item.servicio_nombre === "UTI" &&
-            item.indicador_nombre === indicador &&
-            item.anio === anio &&
-            item.mes === mes
-        );
-
-        console.log("RESULTADO:", resultado);
-
-        if(resultado){
-
-            valorFinal.innerText = resultado.valor_calculado;
-
-            estado.innerText = "Datos cargados correctamente";
-
-        }else{
-
-            valorFinal.innerText = "Sin datos";
-
-            estado.innerText =
-                `No existen datos para ${anio}`;
-        }
-
-    }catch(error){
-
-        console.error(error);
-
-        valorFinal.innerText = "ERROR";
-
-        estado.innerText = "Error al conectar API";
-    }
-}
-
 </script>
+
+<!-- MODEL VIEWER -->
 
 <script
 type="module"
