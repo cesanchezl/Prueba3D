@@ -1,126 +1,233 @@
-/* RESET */
-* {
-  box-sizing: border-box;
+/* ================= RESET ================= */
+
+*{
+    box-sizing:border-box;
 }
 
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: #eef2f7;
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:#eef2f7;
+    overflow:hidden;
 }
 
-/* NAVBAR */
-.navbar {
-  display: flex;
-  align-items: center;
-  background-color: #333;
-  height: 48px;
+/* ================= NAVBAR ================= */
+
+.navbar{
+
+    display:flex;
+    align-items:center;
+
+    width:100%;
+    height:56px;
+
+    background:#222;
+
+    border-bottom:1px solid #444;
 }
 
-/* TODOS LOS ELEMENTOS MISMO ANCHO */
+/* TODOS IGUALES */
+
 .navbar a,
-.navbar-select {
-  width: 110px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  text-align: center;
-  font-size: 16px;
-  border: none;
-  text-decoration: none;
-  background: #333;
-  color: white;
-  cursor: pointer;
+.navbar-select{
+
+    width:130px;
+    height:56px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#222;
+    color:white;
+
+    border:none;
+    outline:none;
+
+    text-decoration:none;
+
+    font-size:16px;
+    font-weight:500;
+
+    cursor:pointer;
+
+    transition:0.2s;
 }
 
 /* HOVER */
+
 .navbar a:hover,
-.navbar-select:hover {
-  background-color: #575757;
+.navbar-select:hover{
+
+    background:#3b3b3b;
 }
 
-/* SELECT NAVBAR */
-.navbar-select {
-  appearance: none;
-  outline: none;
+/* SELECT */
+
+.navbar-select{
+
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+
+    text-align:center;
 }
 
-/* DROPDOWN */
-.dropdown {
-  position: relative;
+/* OPCIONES */
+
+.navbar-select option{
+
+    background:#222;
+    color:white;
+
+    font-size:15px;
 }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background: white;
-  min-width: 160px;
+/* ================= MAIN ================= */
+
+.main{
+
+    display:flex;
+
+    width:100%;
+    height:calc(100vh - 56px);
 }
 
-.dropdown:hover .dropdown-content {
-  display: block;
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+
+    width:260px;
+
+    background:white;
+
+    padding:22px;
+
+    border-right:1px solid #dcdde1;
 }
 
-/* LAYOUT */
-.main {
-  display: flex;
-  height: calc(100vh - 48px);
+.sidebar h2{
+
+    margin-top:0;
+
+    color:#2c2c54;
 }
 
-/* SIDEBAR */
-.sidebar {
-  width: 260px;
-  background: white;
-  padding: 20px;
+/* ================= CENTRO ================= */
+
+.center{
+
+    flex:1;
+
+    display:flex;
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:center;
+
+    background:#4a6cf7;
 }
 
-/* CENTRO */
-.center {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: #4a6cf7; /* azul bonito */
+/* ================= VISOR ================= */
+
+model-viewer{
+
+    width:85%;
+    height:500px;
+
+    background:transparent;
 }
 
-/* VISOR */
-model-viewer {
-  width: 80%;
-  height: 500px;
+/* ================= CONTROLES ================= */
+
+.controles{
+
+    margin-top:16px;
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
 }
 
-/* CONTROLES */
-.controles {
-  margin-top: 15px;
-  display: flex;
-  gap: 10px;
+.controles button{
+
+    width:42px;
+    height:42px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#2c2c54;
+
+    color:white;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transition:0.2s;
 }
 
-.controles button {
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
-  background: #2c2c54;
-  color: white;
-  cursor: pointer;
+.controles button:hover{
+
+    background:#40407a;
+
+    transform:translateY(-2px);
 }
 
-.controles button:hover {
-  background: #40407a;
+/* ================= PANEL DERECHO ================= */
+
+.right-panel{
+
+    width:300px;
+
+    background:white;
+
+    padding:20px;
+
+    border-left:1px solid #dcdde1;
 }
 
-/* PANEL DERECHO */
-.right-panel {
-  width: 300px;
-  padding: 20px;
+/* ================= CARD ================= */
+
+.card{
+
+    background:#2c2c54;
+
+    color:white;
+
+    padding:22px;
+
+    border-radius:20px;
+
+    box-shadow:0 6px 18px rgba(0,0,0,0.15);
 }
 
-.card {
-  background: #2c2c54;
-  color: white;
-  padding: 20px;
-  border-radius: 20px;
+.card h2{
+
+    margin-top:0;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1100px){
+
+    .sidebar,
+    .right-panel{
+
+        display:none;
+    }
+
+    model-viewer{
+
+        width:95%;
+    }
+
+    .navbar{
+
+        overflow-x:auto;
+    }
 }
