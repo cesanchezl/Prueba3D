@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Visor 3D - Inicio</title>
+<title>Visor 3D - Piso 1</title>
 
 <style>
+
+/* ================= RESET ================= */
+
 *{
     box-sizing:border-box;
 }
@@ -16,175 +20,257 @@ body{
     background:#eef2f7;
 }
 
-/* NAVBAR */
+/* ================= NAVBAR ================= */
+
 .navbar{
+
     display:flex;
     align-items:center;
-    background-color:#333;
-    height:48px;
+
+    background:#1f1f1f;
+
+    height:56px;
+
+    box-shadow:0 2px 10px rgba(0,0,0,0.2);
 }
 
-.navbar a{
-    color:white;
-    padding:14px 16px;
-    text-decoration:none;
-    min-width:110px;
-    text-align:center;
-}
+/* ITEMS NAVBAR */
 
-.navbar a:hover{
-    background-color:#575757;
-}
-
-/* SELECT NAVBAR */
+.navbar a,
 .navbar-select{
-    background:#333;
+
+    width:130px;
+    height:56px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
     color:white;
+    background:#1f1f1f;
+
+    text-decoration:none;
+
     border:none;
-    padding:14px 16px;
-    font-size:16px;
-    cursor:pointer;
     outline:none;
-    min-width:110px;
-    height:48px;
+
+    font-size:15px;
+    font-weight:500;
+
+    cursor:pointer;
+
+    transition:0.25s;
+}
+
+/* HOVER */
+
+.navbar a:hover,
+.navbar-select:hover{
+
+    background:#3a3a3a;
+}
+
+/* SELECT */
+
+.navbar-select{
+
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+
     text-align:center;
 }
 
-.navbar-select:hover{
-    background-color:#575757;
+/* OPCIONES */
+
+.navbar-select option{
+
+    background:#1f1f1f;
+    color:white;
 }
 
-/* MAIN */
+/* ================= LAYOUT ================= */
+
 .main{
+
     display:flex;
-    height:calc(100vh - 48px);
+
+    height:calc(100vh - 56px);
 }
 
-/* SIDEBAR */
+/* ================= SIDEBAR ================= */
+
 .sidebar{
-    width:240px;
+
+    width:260px;
+
     background:white;
-    padding:14px;
+
+    padding:18px;
+
     border-right:1px solid #ddd;
-    overflow:hidden;
+
+    box-shadow:2px 0 10px rgba(0,0,0,0.05);
 }
 
 .sidebar h2{
-    margin:10px 0;
-    font-size:20px;
+
+    margin-top:0;
+
+    color:#2c2c54;
 }
 
-.button-group{
-    display:flex;
-    flex-direction:column;
-    gap:6px;
-    margin-bottom:12px;
-}
+/* ================= CENTRO ================= */
 
-.button-group button{
-    padding:8px;
-    border:none;
-    border-radius:8px;
-    background:#f1f3f7;
-    cursor:pointer;
-    transition:0.2s;
-    font-size:14px;
-}
-
-.button-group button:hover{
-    background:#dfe4ea;
-}
-
-.button-group button.active{
-    background:#2c2c54;
-    color:white;
-}
-
-select{
-    width:100%;
-    padding:8px;
-    border-radius:8px;
-    border:1px solid #ccc;
-    font-size:14px;
-}
-
-/* CENTRO */
 .center{
+
     flex:1;
+
     display:flex;
     flex-direction:column;
+
     align-items:center;
     justify-content:center;
-    background:#4a6cf7;
+
+    background:linear-gradient(135deg,#4a6cf7,#3b5bdb);
+
+    position:relative;
 }
+
+/* TITULO CENTRO */
+
+.center-title{
+
+    color:white;
+
+    text-align:center;
+
+    margin-bottom:10px;
+}
+
+.center-title h1{
+
+    margin:0;
+    font-size:22px;
+}
+
+.center-title p{
+
+    margin:5px 0 0;
+    font-size:13px;
+    opacity:0.9;
+}
+
+/* MODEL VIEWER */
 
 model-viewer{
+
     width:85%;
-    height:460px;
+    height:480px;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.25);
+
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(6px);
 }
 
+/* ================= CONTROLES ================= */
+
 .controles{
-    margin-top:12px;
+
+    margin-top:18px;
+
     display:flex;
-    gap:10px;
+
+    gap:18px;
+
     flex-wrap:wrap;
+
+    justify-content:center;
 }
 
 .controles button{
-    padding:10px;
+
+    width:80px;
+    height:80px;
+
     border:none;
-    border-radius:8px;
+
+    border-radius:16px;
+
     background:#2c2c54;
+
     color:white;
+
+    font-size:34px;
+
     cursor:pointer;
+
+    transition:0.2s;
+
+    box-shadow:0 6px 15px rgba(0,0,0,0.25);
 }
 
 .controles button:hover{
+
     background:#40407a;
+
+    transform:scale(1.1);
 }
 
-/* PANEL DERECHO */
+/* ================= PANEL DERECHO ================= */
+
 .right-panel{
+
     width:300px;
+
     background:white;
-    padding:16px;
+
+    padding:18px;
+
     border-left:1px solid #ddd;
 }
 
+/* CARD */
+
 .card{
+
     background:#2c2c54;
+
     color:white;
-    padding:18px;
-    border-radius:20px;
+
+    padding:20px;
+
+    border-radius:18px;
+
+    box-shadow:0 6px 20px rgba(0,0,0,0.15);
 }
 
-.item{
-    margin-bottom:16px;
+.card h2{
+
+    margin-top:0;
 }
 
-.label{
-    font-size:14px;
-    opacity:0.8;
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1000px){
+
+    .sidebar,
+    .right-panel{
+
+        display:none;
+    }
+
+    model-viewer{
+
+        width:95%;
+    }
 }
 
-.value{
-    font-size:18px;
-    font-weight:bold;
-}
-
-#valorFinal{
-    font-size:38px;
-    margin-top:18px;
-    text-align:center;
-}
-
-.estado{
-    margin-top:12px;
-    text-align:center;
-    font-size:14px;
-    opacity:0.8;
-}
 </style>
+
 </head>
 
 <body>
@@ -192,45 +278,52 @@ model-viewer{
 <!-- NAVBAR -->
 <div class="navbar">
 
-    <a href="index.html">Inicio</a>
+    <a href="index.html">🏠 Inicio</a>
+    <a href="piso1.html">📍 Piso 1</a>
 
-    <a href="piso1.html">Piso 1</a>
-
-    <!-- SELECT PISO 2 -->
     <select class="navbar-select" onchange="irAPagina(this.value)">
         <option value="">Piso 2</option>
         <option value="uci6.html">UCI</option>
         <option value="uti18.html">UTI</option>
     </select>
-    <a href="">Piso 3</a>
+
+    <a href="#">Piso 3</a>
 
     <select class="navbar-select" onchange="irAPagina(this.value)">
         <option value="">Piso 4</option>
         <option value="obstetricia.html">Obstetricia</option>
     </select>
-    <a href="">Piso 5</a>
-    
-<a href="">Piso 6</a>
-    <a href="">Piso 7</a>
+
 </div>
 
+<!-- MAIN -->
 <div class="main">
 
     <!-- SIDEBAR -->
     <div class="sidebar">
 
-        <h2>Bienvenido</h2>
+        <h2>🧭 Panel</h2>
+        <p style="font-size:13px; opacity:0.7;">
+            Visualización del sistema hospitalario 3D
+        </p>
 
-        
     </div>
 
     <!-- CENTRO -->
     <div class="center">
 
+        <div class="center-title">
+
+            <h1>🏥 Hospital de Melipilla</h1>
+            <p>Modelo 3D interactivo del Piso 1</p>
+
+        </div>
+
         <model-viewer
             id="visor"
             src="piso1.glb"
-            camera-controls>
+            camera-controls
+            auto-rotate>
         </model-viewer>
 
         <div class="controles">
@@ -251,7 +344,11 @@ model-viewer{
 
         <div class="card">
 
-            <h2>Hospital de Melipilla</h2>
+            <h2>📊 Estado del sistema</h2>
+
+            <p style="font-size:13px; opacity:0.8;">
+                Visualización activa del modelo 3D.
+            </p>
 
         </div>
 
@@ -259,6 +356,7 @@ model-viewer{
 
 </div>
 
+<!-- SCRIPT -->
 <script>
 
 const visor = document.getElementById("visor");
@@ -267,46 +365,18 @@ let theta = 0;
 let phi = 75;
 let radius = 2.5;
 
-let indicador = "";
-let anio = "";
-let mes = "";
-
-const API_URL = "https://api-hsjmelipilla.onrender.com/api/valores/";
-
-// ================= NAVBAR =================
-
 function irAPagina(url){
-
-    if(url){
-        window.location.href = url;
-    }
+    if(url) window.location.href = url;
 }
-
-// ================= CAMERA =================
 
 function actualizarCamara(){
     visor.cameraOrbit = `${theta}deg ${phi}deg ${radius}m`;
 }
 
-function moverIzquierda(){
-    theta -= 10;
-    actualizarCamara();
-}
-
-function moverDerecha(){
-    theta += 10;
-    actualizarCamara();
-}
-
-function moverArriba(){
-    phi -= 10;
-    actualizarCamara();
-}
-
-function moverAbajo(){
-    phi += 10;
-    actualizarCamara();
-}
+function moverIzquierda(){ theta -= 10; actualizarCamara(); }
+function moverDerecha(){ theta += 10; actualizarCamara(); }
+function moverArriba(){ phi -= 10; actualizarCamara(); }
+function moverAbajo(){ phi += 10; actualizarCamara(); }
 
 function zoomIn(){
     radius = Math.max(1, radius - 0.3);
@@ -318,155 +388,9 @@ function zoomOut(){
     actualizarCamara();
 }
 
-// ================= FILTROS =================
-
-function seleccionarIndicador(btn,texto){
-
-    document
-        .querySelectorAll(".sidebar .button-group button")
-        .forEach(b => b.classList.remove("active"));
-
-    btn.classList.add("active");
-
-    indicador = texto;
-
-    document.getElementById("val1").innerText = texto;
-
-    obtenerDatos();
-}
-
-// ================= AÑO =================
-
-function actualizarAnio(){
-
-    const select = document.getElementById("anioSelect");
-
-    anio = parseInt(select.value);
-
-    document.getElementById("val2").innerText = select.value;
-
-    obtenerDatos();
-}
-
-// ================= MES =================
-
-function actualizarMes(){
-
-    const select = document.getElementById("mesSelect");
-
-    mes = parseInt(select.value);
-
-    const nombreMes =
-        select.options[select.selectedIndex].text;
-
-    document.getElementById("val3").innerText = nombreMes;
-
-    obtenerDatos();
-}
-
-// ================= API =================
-
-async function obtenerDatos(){
-
-    if(!indicador || !anio || isNaN(mes)){
-        return;
-    }
-
-    const estado = document.getElementById("estado");
-    const valorFinal = document.getElementById("valorFinal");
-
-    estado.innerText = "Consultando API...";
-    valorFinal.innerText = "...";
-
-    try{
-
-        const response = await fetch(API_URL);
-
-        if(!response.ok){
-            throw new Error("Error HTTP " + response.status);
-        }
-
-        const datos = await response.json();
-
-        console.log("DATOS API:", datos);
-
-        // ================= TODOS LOS MESES =================
-        // AHORA toma el valor del MES 0 directamente
-        if(mes === 0){
-
-            const resultadoMes0 = datos.find(item =>
-
-                item.servicio_nombre === "Obstetricia" &&
-                item.indicador_nombre === indicador &&
-                item.anio === anio &&
-                item.mes === 0
-            );
-
-            console.log("RESULTADO MES 0:", resultadoMes0);
-
-            if(resultadoMes0){
-
-                valorFinal.innerText =
-                    Number(resultadoMes0.valor_calculado).toFixed(2);
-
-                estado.innerText =
-                    "Datos de todos los meses cargados";
-
-            }else{
-
-                valorFinal.innerText = "Sin datos";
-
-                estado.innerText =
-                    `No existen datos acumulados para ${anio}`;
-            }
-
-            return;
-        }
-
-        // ================= MES INDIVIDUAL =================
-
-        const resultado = datos.find(item =>
-
-            item.servicio_nombre === "Obstetricia" &&
-            item.indicador_nombre === indicador &&
-            item.anio === anio &&
-            item.mes === mes
-        );
-
-        console.log("RESULTADO:", resultado);
-
-        if(resultado){
-
-            valorFinal.innerText =
-                Number(resultado.valor_calculado).toFixed(2);
-
-            estado.innerText =
-                "Datos cargados correctamente";
-
-        }else{
-
-            valorFinal.innerText = "Sin datos";
-
-            estado.innerText =
-                `No existen datos para ${anio}`;
-        }
-
-    }catch(error){
-
-        console.error(error);
-
-        valorFinal.innerText = "ERROR";
-
-        estado.innerText = "Error al conectar API";
-    }
-}
-
 </script>
 
-<script
-type="module"
-src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js">
-</script>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js"></script>
 
 </body>
 </html>
