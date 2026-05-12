@@ -131,9 +131,11 @@ body{
 
     color:#2c2c54;
 
-    font-size:13px;
+    font-size:15px;
 
     font-weight:600;
+
+    line-height:1.2;
 }
 
 /* BOTONES */
@@ -592,6 +594,65 @@ model-viewer{
     </div>
 
 </div>
+
+<!-- SCRIPT -->
+<script>
+
+const visor = document.getElementById("visor");
+
+let theta = 0;
+let phi = 75;
+let radius = 2.5;
+
+function irAPagina(url){
+
+    if(url){
+        window.location.href = url;
+    }
+}
+
+function actualizarCamara(){
+
+    visor.cameraOrbit =
+    `${theta}deg ${phi}deg ${radius}m`;
+}
+
+function moverIzquierda(){
+    theta -= 10;
+    actualizarCamara();
+}
+
+function moverDerecha(){
+    theta += 10;
+    actualizarCamara();
+}
+
+function moverArriba(){
+    phi -= 10;
+    actualizarCamara();
+}
+
+function moverAbajo(){
+    phi += 10;
+    actualizarCamara();
+}
+
+function zoomIn(){
+    radius = Math.max(1, radius - 0.3);
+    actualizarCamara();
+}
+
+function zoomOut(){
+    radius += 0.3;
+    actualizarCamara();
+}
+
+</script>
+
+<script
+type="module"
+src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js">
+</script>
 
 </body>
 </html>
