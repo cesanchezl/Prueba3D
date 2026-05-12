@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Visor 3D - Obstetricia</title>
 
 <style>
+
+/* ================= RESET ================= */
+
 *{
     box-sizing:border-box;
 }
@@ -16,175 +22,375 @@ body{
     background:#eef2f7;
 }
 
-/* NAVBAR */
+/* ================= NAVBAR ================= */
+
 .navbar{
+
     display:flex;
     align-items:center;
-    background-color:#333;
-    height:48px;
+
+    background:#1f1f1f;
+
+    height:56px;
+
+    box-shadow:0 2px 10px rgba(0,0,0,0.2);
 }
 
-.navbar a{
-    color:white;
-    padding:14px 16px;
-    text-decoration:none;
-    min-width:110px;
-    text-align:center;
-}
+/* ITEMS NAVBAR */
 
-.navbar a:hover{
-    background-color:#575757;
-}
-
-/* SELECT NAVBAR */
+.navbar a,
 .navbar-select{
-    background:#333;
+
+    width:130px;
+    height:56px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
     color:white;
+    background:#1f1f1f;
+
+    text-decoration:none;
+
     border:none;
-    padding:14px 16px;
-    font-size:16px;
-    cursor:pointer;
     outline:none;
-    min-width:110px;
-    height:48px;
+
+    font-size:15px;
+    font-weight:500;
+
+    cursor:pointer;
+
+    transition:0.25s;
+}
+
+/* HOVER */
+
+.navbar a:hover,
+.navbar-select:hover{
+
+    background:#3a3a3a;
+}
+
+/* SELECT */
+
+.navbar-select{
+
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+
     text-align:center;
 }
 
-.navbar-select:hover{
-    background-color:#575757;
+/* OPCIONES */
+
+.navbar-select option{
+
+    background:#1f1f1f;
+    color:white;
 }
 
-/* MAIN */
+/* ================= LAYOUT ================= */
+
 .main{
+
     display:flex;
-    height:calc(100vh - 48px);
+
+    height:calc(100vh - 56px);
 }
 
-/* SIDEBAR */
+/* ================= SIDEBAR ================= */
+
 .sidebar{
-    width:240px;
+
+    width:260px;
+
     background:white;
-    padding:14px;
+
+    padding:18px;
+
     border-right:1px solid #ddd;
-    overflow:hidden;
+
+    box-shadow:2px 0 10px rgba(0,0,0,0.05);
+
+    overflow-y:auto;
 }
 
 .sidebar h2{
-    margin:10px 0;
-    font-size:20px;
+
+    margin:8px 0;
+
+    color:#2c2c54;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    line-height:1.2;
 }
 
+/* BOTONES */
+
 .button-group{
+
     display:flex;
     flex-direction:column;
-    gap:6px;
-    margin-bottom:12px;
+
+    gap:10px;
+
+    margin-bottom:22px;
 }
 
 .button-group button{
-    padding:8px;
+
+    padding:12px;
+
     border:none;
-    border-radius:8px;
+
+    border-radius:12px;
+
     background:#f1f3f7;
+
     cursor:pointer;
-    transition:0.2s;
+
+    transition:0.25s;
+
     font-size:14px;
+
+    font-weight:500;
 }
 
 .button-group button:hover{
+
     background:#dfe4ea;
+
+    transform:translateY(-2px);
 }
 
 .button-group button.active{
+
     background:#2c2c54;
+
     color:white;
 }
 
-select{
+/* SELECT FILTROS */
+
+.sidebar select{
+
     width:100%;
-    padding:8px;
-    border-radius:8px;
+
+    padding:12px;
+
+    border-radius:12px;
+
     border:1px solid #ccc;
+
     font-size:14px;
+
+    margin-bottom:20px;
+
+    outline:none;
 }
 
-/* CENTRO */
+/* ================= CENTRO ================= */
+
 .center{
+
     flex:1;
+
     display:flex;
     flex-direction:column;
+
     align-items:center;
     justify-content:center;
-    background:#4a6cf7;
+
+    background:linear-gradient(135deg,#4a6cf7,#3b5bdb);
+
+    position:relative;
 }
+
+/* TITULO CENTRO */
+
+.center-title{
+
+    color:white;
+
+    text-align:center;
+
+    margin-bottom:10px;
+}
+
+.center-title h1{
+
+    margin:0;
+    font-size:24px;
+}
+
+.center-title p{
+
+    margin:5px 0 0;
+    font-size:13px;
+    opacity:0.9;
+}
+
+/* MODEL VIEWER */
 
 model-viewer{
+
     width:85%;
-    height:460px;
+    height:480px;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.25);
+
+    background:rgba(255,255,255,0.05);
+
+    backdrop-filter:blur(6px);
 }
 
+/* ================= CONTROLES ================= */
+
 .controles{
-    margin-top:12px;
+
+    margin-top:18px;
+
     display:flex;
-    gap:10px;
+
+    gap:18px;
+
     flex-wrap:wrap;
+
+    justify-content:center;
 }
 
 .controles button{
-    padding:10px;
+
+    width:80px;
+    height:80px;
+
     border:none;
-    border-radius:8px;
+
+    border-radius:16px;
+
     background:#2c2c54;
+
     color:white;
+
+    font-size:34px;
+
     cursor:pointer;
+
+    transition:0.2s;
+
+    box-shadow:0 6px 15px rgba(0,0,0,0.25);
 }
 
 .controles button:hover{
+
     background:#40407a;
+
+    transform:scale(1.1);
 }
 
-/* PANEL DERECHO */
+/* ================= PANEL DERECHO ================= */
+
 .right-panel{
+
     width:300px;
+
     background:white;
-    padding:16px;
+
+    padding:18px;
+
     border-left:1px solid #ddd;
 }
 
+/* CARD */
+
 .card{
+
     background:#2c2c54;
+
     color:white;
-    padding:18px;
-    border-radius:20px;
+
+    padding:22px;
+
+    border-radius:18px;
+
+    box-shadow:0 6px 20px rgba(0,0,0,0.15);
 }
 
+.card h2{
+
+    margin-top:0;
+}
+
+/* ITEMS */
+
 .item{
-    margin-bottom:16px;
+
+    margin-bottom:18px;
 }
 
 .label{
-    font-size:14px;
-    opacity:0.8;
+
+    font-size:13px;
+
+    opacity:0.75;
 }
 
 .value{
+
     font-size:18px;
-    font-weight:bold;
+
+    font-weight:600;
 }
+
+/* VALOR FINAL */
 
 #valorFinal{
-    font-size:38px;
-    margin-top:18px;
+
+    font-size:42px;
+
+    margin-top:10px;
+
     text-align:center;
 }
 
+/* ESTADO */
+
 .estado{
-    margin-top:12px;
+
+    margin-top:16px;
+
     text-align:center;
-    font-size:14px;
-    opacity:0.8;
+
+    font-size:13px;
+
+    opacity:0.85;
 }
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1000px){
+
+    .sidebar,
+    .right-panel{
+
+        display:none;
+    }
+
+    model-viewer{
+
+        width:95%;
+    }
+}
+
 </style>
+
 </head>
 
 <body>
@@ -192,11 +398,10 @@ model-viewer{
 <!-- NAVBAR -->
 <div class="navbar">
 
-    <a href="index.html">Inicio</a>
+    <a href="index.html">🏠 Inicio</a>
 
-    <a href="piso1.html">Piso 1</a>
+    <a href="piso1.html">📍 Piso 1</a>
 
-    <!-- SELECT PISO 2 -->
     <select class="navbar-select" onchange="irAPagina(this.value)">
         <option value="">Piso 2</option>
         <option value="uci6.html">UCI</option>
@@ -210,16 +415,13 @@ model-viewer{
 
 </div>
 
+<!-- MAIN -->
 <div class="main">
 
     <!-- SIDEBAR -->
     <div class="sidebar">
 
-        <h2>Indicadores</h2>
-
-        <div class="sidebar">
-
-        <h2>Indicadores</h2>
+        <h2>📊 Indicadores</h2>
 
         <div class="button-group">
 
@@ -236,7 +438,7 @@ model-viewer{
             </button>
 
             <button onclick="seleccionarIndicador(this,'Índice de Sustitución')">
-                Índice(intervalo) Sustitución
+                Índice Sustitución
             </button>
 
             <button onclick="seleccionarIndicador(this,'Índice de Ocupación')">
@@ -248,10 +450,8 @@ model-viewer{
             </button>
 
         </div>
-            
 
-        <!-- SELECT AÑO -->
-        <h2>Año</h2>
+        <h2>📅 Año</h2>
 
         <select id="anioSelect" onchange="actualizarAnio()">
 
@@ -263,10 +463,7 @@ model-viewer{
 
         </select>
 
-        <br><br>
-
-        <!-- SELECT MES -->
-        <h2>Mes</h2>
+        <h2>🗓️ Mes</h2>
 
         <select id="mesSelect" onchange="actualizarMes()">
 
@@ -294,10 +491,19 @@ model-viewer{
     <!-- CENTRO -->
     <div class="center">
 
+        <div class="center-title">
+
+            <h1>🏥 Hospital de Melipilla</h1>
+
+            <p>Modelo 3D interactivo - UCI</p>
+
+        </div>
+
         <model-viewer
             id="visor"
-            src="camas6.glb"
-            camera-controls>
+            src="camas18.glb"
+            camera-controls
+            auto-rotate>
         </model-viewer>
 
         <div class="controles">
@@ -318,33 +524,52 @@ model-viewer{
 
         <div class="card">
 
+            <h2>📈 Estado del sistema</h2>
+
             <div class="item">
+
                 <div class="label">Servicio</div>
-                <div class="value">UCI</div>
+
+                <div class="value">UTI</div>
+
             </div>
 
             <div class="item">
+
                 <div class="label">Indicador</div>
+
                 <div id="val1" class="value">—</div>
+
             </div>
 
             <div class="item">
+
                 <div class="label">Año</div>
+
                 <div id="val2" class="value">—</div>
+
             </div>
 
             <div class="item">
+
                 <div class="label">Mes</div>
+
                 <div id="val3" class="value">—</div>
+
             </div>
 
             <div class="item">
+
                 <div class="label">Valor Calculado</div>
+
                 <h2 id="valorFinal">--</h2>
+
             </div>
 
             <div id="estado" class="estado">
+
                 Selecciona filtros
+
             </div>
 
         </div>
@@ -353,6 +578,7 @@ model-viewer{
 
 </div>
 
+<!-- SCRIPT -->
 <script>
 
 const visor = document.getElementById("visor");
@@ -367,7 +593,7 @@ let mes = "";
 
 const API_URL = "https://api-hsjmelipilla.onrender.com/api/valores/";
 
-// ================= NAVBAR =================
+/* ================= NAVBAR ================= */
 
 function irAPagina(url){
 
@@ -376,43 +602,57 @@ function irAPagina(url){
     }
 }
 
-// ================= CAMERA =================
+/* ================= CAMERA ================= */
 
 function actualizarCamara(){
-    visor.cameraOrbit = `${theta}deg ${phi}deg ${radius}m`;
+
+    visor.cameraOrbit =
+        `${theta}deg ${phi}deg ${radius}m`;
 }
 
 function moverIzquierda(){
+
     theta -= 10;
+
     actualizarCamara();
 }
 
 function moverDerecha(){
+
     theta += 10;
+
     actualizarCamara();
 }
 
 function moverArriba(){
+
     phi -= 10;
+
     actualizarCamara();
 }
 
 function moverAbajo(){
+
     phi += 10;
+
     actualizarCamara();
 }
 
 function zoomIn(){
+
     radius = Math.max(1, radius - 0.3);
+
     actualizarCamara();
 }
 
 function zoomOut(){
+
     radius += 0.3;
+
     actualizarCamara();
 }
 
-// ================= FILTROS =================
+/* ================= FILTROS ================= */
 
 function seleccionarIndicador(btn,texto){
 
@@ -429,36 +669,40 @@ function seleccionarIndicador(btn,texto){
     obtenerDatos();
 }
 
-// ================= AÑO =================
+/* ================= AÑO ================= */
 
 function actualizarAnio(){
 
-    const select = document.getElementById("anioSelect");
+    const select =
+        document.getElementById("anioSelect");
 
     anio = parseInt(select.value);
 
-    document.getElementById("val2").innerText = select.value;
+    document.getElementById("val2").innerText =
+        select.value;
 
     obtenerDatos();
 }
 
-// ================= MES =================
+/* ================= MES ================= */
 
 function actualizarMes(){
 
-    const select = document.getElementById("mesSelect");
+    const select =
+        document.getElementById("mesSelect");
 
     mes = parseInt(select.value);
 
     const nombreMes =
         select.options[select.selectedIndex].text;
 
-    document.getElementById("val3").innerText = nombreMes;
+    document.getElementById("val3").innerText =
+        nombreMes;
 
     obtenerDatos();
 }
 
-// ================= API =================
+/* ================= API ================= */
 
 async function obtenerDatos(){
 
@@ -466,8 +710,11 @@ async function obtenerDatos(){
         return;
     }
 
-    const estado = document.getElementById("estado");
-    const valorFinal = document.getElementById("valorFinal");
+    const estado =
+        document.getElementById("estado");
+
+    const valorFinal =
+        document.getElementById("valorFinal");
 
     estado.innerText = "Consultando API...";
     valorFinal.innerText = "...";
@@ -477,69 +724,70 @@ async function obtenerDatos(){
         const response = await fetch(API_URL);
 
         if(!response.ok){
-            throw new Error("Error HTTP " + response.status);
+
+            throw new Error(
+                "Error HTTP " + response.status
+            );
         }
 
         const datos = await response.json();
 
-        console.log("DATOS API:", datos);
-
-        // ================= TODOS LOS MESES =================
-        // AHORA toma el valor del MES 0 directamente
         if(mes === 0){
 
-            const resultadoMes0 = datos.find(item =>
+            const resultadoMes0 =
+                datos.find(item =>
 
-                item.servicio_nombre === "UCI" &&
-                item.indicador_nombre === indicador &&
-                item.anio === anio &&
-                item.mes === 0
-            );
-
-            console.log("RESULTADO MES 0:", resultadoMes0);
+                    item.servicio_nombre === "UCI" &&
+                    item.indicador_nombre === indicador &&
+                    item.anio === anio &&
+                    item.mes === 0
+                );
 
             if(resultadoMes0){
 
                 valorFinal.innerText =
-                    Number(resultadoMes0.valor_calculado).toFixed(2);
+                    Number(
+                        resultadoMes0.valor_calculado
+                    ).toFixed(2);
 
                 estado.innerText =
-                    "Datos de todos los meses cargados";
+                    "Datos acumulados cargados";
 
             }else{
 
-                valorFinal.innerText = "Sin datos";
+                valorFinal.innerText =
+                    "Sin datos";
 
                 estado.innerText =
-                    `No existen datos acumulados para ${anio}`;
+                    `No existen datos para ${anio}`;
             }
 
             return;
         }
 
-        // ================= MES INDIVIDUAL =================
+        const resultado =
+            datos.find(item =>
 
-        const resultado = datos.find(item =>
-
-            item.servicio_nombre === "UCI" &&
-            item.indicador_nombre === indicador &&
-            item.anio === anio &&
-            item.mes === mes
-        );
-
-        console.log("RESULTADO:", resultado);
+                item.servicio_nombre === "UCI" &&
+                item.indicador_nombre === indicador &&
+                item.anio === anio &&
+                item.mes === mes
+            );
 
         if(resultado){
 
             valorFinal.innerText =
-                Number(resultado.valor_calculado).toFixed(2);
+                Number(
+                    resultado.valor_calculado
+                ).toFixed(2);
 
             estado.innerText =
                 "Datos cargados correctamente";
 
         }else{
 
-            valorFinal.innerText = "Sin datos";
+            valorFinal.innerText =
+                "Sin datos";
 
             estado.innerText =
                 `No existen datos para ${anio}`;
@@ -551,7 +799,8 @@ async function obtenerDatos(){
 
         valorFinal.innerText = "ERROR";
 
-        estado.innerText = "Error al conectar API";
+        estado.innerText =
+            "Error al conectar API";
     }
 }
 
