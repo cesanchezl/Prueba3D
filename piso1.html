@@ -2,8 +2,10 @@
 <html lang="es">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Visor 3D - Piso 1</title>
 
 <style>
@@ -18,7 +20,6 @@ html,
 body{
     margin:0;
     padding:0;
-    width:100%;
     overflow-x:hidden;
     font-family:'Segoe UI',sans-serif;
     background:#eef2f7;
@@ -30,20 +31,15 @@ body{
 
     display:flex;
     align-items:center;
-    justify-content:flex-start;
 
     background:#1f1f1f;
 
-    min-height:56px;
+    height:56px;
 
     box-shadow:0 2px 10px rgba(0,0,0,0.2);
 
     overflow-x:auto;
-    overflow-y:hidden;
-
     white-space:nowrap;
-
-    scrollbar-width:none;
 }
 
 .navbar::-webkit-scrollbar{
@@ -113,7 +109,9 @@ body{
 
     display:flex;
 
-    min-height:calc(100vh - 56px);
+    height:calc(100vh - 56px);
+
+    width:100%;
 }
 
 /* ================= SIDEBAR ================= */
@@ -122,6 +120,8 @@ body{
 
     width:260px;
 
+    min-width:260px;
+
     background:white;
 
     padding:18px;
@@ -129,6 +129,8 @@ body{
     border-right:1px solid #ddd;
 
     box-shadow:2px 0 10px rgba(0,0,0,0.05);
+
+    overflow:auto;
 }
 
 .sidebar h2{
@@ -155,6 +157,8 @@ body{
     position:relative;
 
     padding:20px;
+
+    overflow:hidden;
 }
 
 /* TITULO CENTRO */
@@ -165,9 +169,7 @@ body{
 
     text-align:center;
 
-    margin-bottom:15px;
-
-    padding:0 10px;
+    margin-bottom:10px;
 }
 
 .center-title h1{
@@ -188,8 +190,6 @@ body{
 model-viewer{
 
     width:85%;
-    max-width:1200px;
-
     height:480px;
 
     border-radius:18px;
@@ -214,8 +214,6 @@ model-viewer{
     flex-wrap:wrap;
 
     justify-content:center;
-
-    padding:0 10px;
 }
 
 .controles button{
@@ -253,11 +251,15 @@ model-viewer{
 
     width:300px;
 
+    min-width:300px;
+
     background:white;
 
     padding:18px;
 
     border-left:1px solid #ddd;
+
+    overflow:auto;
 }
 
 /* CARD */
@@ -280,107 +282,119 @@ model-viewer{
     margin-top:0;
 }
 
-/* ================= RESPONSIVE TABLET ================= */
+/* ================= RESPONSIVE ================= */
+
+/* TABLET */
 
 @media(max-width:1000px){
 
-    .sidebar,
-    .right-panel{
+    .sidebar{
 
-        display:none;
+        width:180px;
+        min-width:180px;
+
+        padding:12px;
     }
 
-    .center{
+    .right-panel{
 
-        padding:20px 12px;
+        width:180px;
+        min-width:180px;
+
+        padding:12px;
     }
 
     model-viewer{
 
-        width:100%;
-        height:420px;
+        width:95%;
+        height:380px;
+    }
+
+    .controles button{
+
+        width:65px;
+        height:65px;
+
+        font-size:28px;
     }
 }
 
-/* ================= RESPONSIVE MOBILE ================= */
+/* MOVIL */
 
 @media(max-width:768px){
 
     .main{
 
-        flex-direction:column;
+        height:auto;
+
+        min-height:calc(100vh - 56px);
+    }
+
+    .sidebar{
+
+        width:110px;
+        min-width:110px;
+
+        padding:10px;
+    }
+
+    .right-panel{
+
+        width:110px;
+        min-width:110px;
+
+        padding:10px;
+    }
+
+    .sidebar h2,
+    .card h2{
+
+        font-size:14px;
+    }
+
+    .sidebar p,
+    .card p{
+
+        font-size:11px !important;
     }
 
     .center{
 
-        min-height:auto;
-
-        padding:16px 10px 30px;
+        padding:10px;
     }
 
     .center-title h1{
 
-        font-size:20px;
+        font-size:16px;
     }
 
     .center-title p{
 
-        font-size:12px;
+        font-size:11px;
     }
 
     model-viewer{
 
         width:100%;
-        height:320px;
+        height:240px;
 
-        border-radius:14px;
+        border-radius:12px;
     }
 
     .controles{
 
-        gap:12px;
-        margin-top:16px;
+        gap:8px;
+        margin-top:12px;
     }
 
     .controles button{
 
-        width:64px;
-        height:64px;
+        width:48px;
+        height:48px;
 
-        font-size:28px;
+        font-size:20px;
 
-        border-radius:14px;
-    }
-
-    .navbar a,
-    .navbar-select{
-
-        min-width:110px;
-
-        font-size:14px;
-    }
-}
-
-/* ================= RESPONSIVE SMALL MOBILE ================= */
-
-@media(max-width:480px){
-
-    .center-title h1{
-
-        font-size:18px;
-    }
-
-    model-viewer{
-
-        height:260px;
-    }
-
-    .controles button{
-
-        width:56px;
-        height:56px;
-
-        font-size:24px;
+        border-radius:10px;
     }
 
     .navbar a,
@@ -389,6 +403,58 @@ model-viewer{
         min-width:100px;
 
         font-size:13px;
+    }
+}
+
+/* MOVIL PEQUEÑO */
+
+@media(max-width:480px){
+
+    .sidebar{
+
+        width:90px;
+        min-width:90px;
+    }
+
+    .right-panel{
+
+        width:90px;
+        min-width:90px;
+    }
+
+    .sidebar h2,
+    .card h2{
+
+        font-size:12px;
+    }
+
+    .sidebar p,
+    .card p{
+
+        display:none;
+    }
+
+    .center-title h1{
+
+        font-size:14px;
+    }
+
+    .center-title p{
+
+        font-size:10px;
+    }
+
+    model-viewer{
+
+        height:190px;
+    }
+
+    .controles button{
+
+        width:42px;
+        height:42px;
+
+        font-size:18px;
     }
 }
 
@@ -402,6 +468,7 @@ model-viewer{
 <div class="navbar">
 
     <a href="index.html">🏠 Inicio</a>
+
     <a href="piso1.html">Piso 1</a>
 
     <select class="navbar-select" onchange="irAPagina(this.value)">
@@ -439,6 +506,7 @@ model-viewer{
         <div class="center-title">
 
             <h1>🏥 Hospital de Melipilla</h1>
+
             <p>Modelo 3D interactivo del Piso 1</p>
 
         </div>
@@ -446,9 +514,7 @@ model-viewer{
         <model-viewer
             id="visor"
             src="piso1.glb"
-            camera-controls
-            touch-action="pan-y"
-            autoplay>
+            camera-controls>
         </model-viewer>
 
         <div class="controles">
@@ -528,7 +594,10 @@ function zoomOut(){
 
 </script>
 
-<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js"></script>
+<script
+type="module"
+src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js">
+</script>
 
 </body>
 </html>
