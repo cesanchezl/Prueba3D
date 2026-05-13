@@ -400,7 +400,7 @@ model-viewer{
 
     <a href="index.html">🏠 Inicio</a>
 
-    <a href="piso1.html">📍 Piso 1</a>
+    <a href="piso1.html"> Piso 1</a>
 
     <select class="navbar-select" onchange="irAPagina(this.value)">
         <option value="">Piso 2</option>
@@ -502,8 +502,7 @@ model-viewer{
         <model-viewer
             id="visor"
             src="camas18.glb"
-            camera-controls
-            auto-rotate>
+            camera-controls>
         </model-viewer>
 
         <div class="controles">
@@ -512,8 +511,8 @@ model-viewer{
             <button onclick="moverAbajo()">⬇️</button>
             <button onclick="moverIzquierda()">⬅️</button>
             <button onclick="moverDerecha()">➡️</button>
-            <button onclick="zoomIn()">+</button>
-            <button onclick="zoomOut()">-</button>
+            <!--<button onclick="zoomIn()">+</button>-->
+            <!--<button onclick="zoomOut()">-</button>-->
 
         </div>
 
@@ -624,14 +623,14 @@ function moverDerecha(){
     actualizarCamara();
 }
 
-function moverArriba(){
+function moverAbajo(){
 
     phi -= 10;
 
     actualizarCamara();
 }
 
-function moverAbajo(){
+function moverArriba(){
 
     phi += 10;
 
