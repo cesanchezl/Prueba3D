@@ -2,8 +2,10 @@
 <html lang="es">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Visor 3D - Piso 1</title>
 
 <style>
@@ -14,8 +16,11 @@
     box-sizing:border-box;
 }
 
+html,
 body{
     margin:0;
+    padding:0;
+    overflow-x:hidden;
     font-family:'Segoe UI',sans-serif;
     background:#eef2f7;
 }
@@ -32,6 +37,13 @@ body{
     height:56px;
 
     box-shadow:0 2px 10px rgba(0,0,0,0.2);
+
+    overflow-x:auto;
+    white-space:nowrap;
+}
+
+.navbar::-webkit-scrollbar{
+    display:none;
 }
 
 /* ITEMS NAVBAR */
@@ -39,7 +51,7 @@ body{
 .navbar a,
 .navbar-select{
 
-    width:130px;
+    min-width:130px;
     height:56px;
 
     display:flex;
@@ -60,6 +72,8 @@ body{
     cursor:pointer;
 
     transition:0.25s;
+
+    flex-shrink:0;
 }
 
 /* HOVER */
@@ -96,6 +110,8 @@ body{
     display:flex;
 
     height:calc(100vh - 56px);
+
+    width:100%;
 }
 
 /* ================= SIDEBAR ================= */
@@ -104,6 +120,8 @@ body{
 
     width:260px;
 
+    min-width:260px;
+
     background:white;
 
     padding:18px;
@@ -111,6 +129,8 @@ body{
     border-right:1px solid #ddd;
 
     box-shadow:2px 0 10px rgba(0,0,0,0.05);
+
+    overflow:auto;
 }
 
 .sidebar h2{
@@ -135,6 +155,10 @@ body{
     background:linear-gradient(135deg,#4a6cf7,#3b5bdb);
 
     position:relative;
+
+    padding:20px;
+
+    overflow:hidden;
 }
 
 /* TITULO CENTRO */
@@ -173,6 +197,7 @@ model-viewer{
     box-shadow:0 10px 30px rgba(0,0,0,0.25);
 
     background:rgba(255,255,255,0.05);
+
     backdrop-filter:blur(6px);
 }
 
@@ -217,7 +242,7 @@ model-viewer{
 
     background:#40407a;
 
-    transform:scale(1.1);
+    transform:scale(1.08);
 }
 
 /* ================= PANEL DERECHO ================= */
@@ -226,11 +251,15 @@ model-viewer{
 
     width:300px;
 
+    min-width:300px;
+
     background:white;
 
     padding:18px;
 
     border-left:1px solid #ddd;
+
+    overflow:auto;
 }
 
 /* CARD */
@@ -255,17 +284,177 @@ model-viewer{
 
 /* ================= RESPONSIVE ================= */
 
+/* TABLET */
+
 @media(max-width:1000px){
 
-    .sidebar,
+    .sidebar{
+
+        width:180px;
+        min-width:180px;
+
+        padding:12px;
+    }
+
     .right-panel{
 
-        display:none;
+        width:180px;
+        min-width:180px;
+
+        padding:12px;
     }
 
     model-viewer{
 
         width:95%;
+        height:380px;
+    }
+
+    .controles button{
+
+        width:65px;
+        height:65px;
+
+        font-size:28px;
+    }
+}
+
+/* MOVIL */
+
+@media(max-width:768px){
+
+    .main{
+
+        height:auto;
+
+        min-height:calc(100vh - 56px);
+    }
+
+    .sidebar{
+
+        width:110px;
+        min-width:110px;
+
+        padding:10px;
+    }
+
+    .right-panel{
+
+        width:110px;
+        min-width:110px;
+
+        padding:10px;
+    }
+
+    .sidebar h2,
+    .card h2{
+
+        font-size:14px;
+    }
+
+    .sidebar p,
+    .card p{
+
+        font-size:11px !important;
+    }
+
+    .center{
+
+        padding:10px;
+    }
+
+    .center-title h1{
+
+        font-size:16px;
+    }
+
+    .center-title p{
+
+        font-size:11px;
+    }
+
+    model-viewer{
+
+        width:100%;
+        height:240px;
+
+        border-radius:12px;
+    }
+
+    .controles{
+
+        gap:8px;
+        margin-top:12px;
+    }
+
+    .controles button{
+
+        width:48px;
+        height:48px;
+
+        font-size:20px;
+
+        border-radius:10px;
+    }
+
+    .navbar a,
+    .navbar-select{
+
+        min-width:100px;
+
+        font-size:13px;
+    }
+}
+
+/* MOVIL PEQUEÑO */
+
+@media(max-width:480px){
+
+    .sidebar{
+
+        width:90px;
+        min-width:90px;
+    }
+
+    .right-panel{
+
+        width:90px;
+        min-width:90px;
+    }
+
+    .sidebar h2,
+    .card h2{
+
+        font-size:12px;
+    }
+
+    .sidebar p,
+    .card p{
+
+        display:none;
+    }
+
+    .center-title h1{
+
+        font-size:14px;
+    }
+
+    .center-title p{
+
+        font-size:10px;
+    }
+
+    model-viewer{
+
+        height:190px;
+    }
+
+    .controles button{
+
+        width:42px;
+        height:42px;
+
+        font-size:18px;
     }
 }
 
@@ -279,6 +468,7 @@ model-viewer{
 <div class="navbar">
 
     <a href="index.html">🏠 Inicio</a>
+
     <a href="piso1.html">Piso 1</a>
 
     <select class="navbar-select" onchange="irAPagina(this.value)">
@@ -303,6 +493,7 @@ model-viewer{
     <div class="sidebar">
 
         <h2>🧭 Panel</h2>
+
         <p style="font-size:13px; opacity:0.7;">
             Visualización del sistema hospitalario 3D
         </p>
@@ -315,6 +506,7 @@ model-viewer{
         <div class="center-title">
 
             <h1>🏥 Hospital de Melipilla</h1>
+
             <p>Modelo 3D interactivo del Piso 1</p>
 
         </div>
@@ -331,8 +523,6 @@ model-viewer{
             <button onclick="moverAbajo()">⬇️</button>
             <button onclick="moverIzquierda()">⬅️</button>
             <button onclick="moverDerecha()">➡️</button>
-            <!--<button onclick="zoomIn()">+</button>-->
-            <!--<button onclick="zoomOut()">-</button>-->
 
         </div>
 
@@ -372,10 +562,25 @@ function actualizarCamara(){
     visor.cameraOrbit = `${theta}deg ${phi}deg ${radius}m`;
 }
 
-function moverIzquierda(){ theta -= 10; actualizarCamara(); }
-function moverDerecha(){ theta += 10; actualizarCamara(); }
-function moverAbajo(){ phi -= 10; actualizarCamara(); }
-function moverArriba(){ phi += 10; actualizarCamara(); }
+function moverIzquierda(){
+    theta -= 10;
+    actualizarCamara();
+}
+
+function moverDerecha(){
+    theta += 10;
+    actualizarCamara();
+}
+
+function moverAbajo(){
+    phi -= 10;
+    actualizarCamara();
+}
+
+function moverArriba(){
+    phi += 10;
+    actualizarCamara();
+}
 
 function zoomIn(){
     radius = Math.max(1, radius - 0.3);
@@ -389,7 +594,10 @@ function zoomOut(){
 
 </script>
 
-<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js"></script>
+<script
+type="module"
+src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js">
+</script>
 
 </body>
 </html>
