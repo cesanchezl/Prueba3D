@@ -96,8 +96,8 @@
     <button onclick="moverAbajo()">⬇️</button>
     <button onclick="moverIzquierda()">⬅️</button>
     <button onclick="moverDerecha()">➡️</button>
-    <button onclick="zoomIn()">Zoom +</button>
-    <button onclick="zoomOut()">Zoom -</button>
+    <!--<button onclick="zoomIn()">Zoom +</button>-->
+    <!--<button onclick="zoomOut()">Zoom -</button>-->
 </div>
 
 <script>
@@ -122,12 +122,12 @@ function moverDerecha() {
   actualizarCamara();
 }
 
-function moverArriba() {
+function moverAbajo() {
   phi = Math.max(10, phi - 10);
   actualizarCamara();
 }
 
-function moverAbajo() {
+function moverArriba() {
   phi = Math.min(170, phi + 10);
   actualizarCamara();
 }
